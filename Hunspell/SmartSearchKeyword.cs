@@ -8,7 +8,8 @@ namespace SmartSearchAPI
     public class SmartSearchKeyword
     {
         private string _keyword;
-        public string Keyword
+        private bool isNoun;
+        public string Noun
         {
             get
             {
@@ -17,33 +18,44 @@ namespace SmartSearchAPI
             set
             {
                 _keyword = value;
-                if(value != "")
+                if(value != "" && isNoun)
                     GetSynonyms();
             }
         }
         public List<string> Synonyms { get; }
+        MyThes thes;
+        Hunspell hunspell;
 
         public SmartSearchKeyword(string keyword)
         {
             Synonyms = new List<string>();
-            Keyword = keyword;
+            isNoun = true;
+            Noun = keyword;
+            thes = new MyThes(@".\th_it_IT.dat");
+            hunspell = new Hunspell(@".\elastic_hunspell_master_dicts_it_IT.aff", @".\elastic_hunspell_master_dicts_it_IT.dic");
+        }
+
+        public void SetSynonyms(bool _set)
+        {
+            isNoun = _set;
         }
 
         public SmartSearchKeyword()
         {
             Synonyms = new List<string>();
-            Keyword = "";
+            isNoun = true;
+            Noun = "";
+            thes = new MyThes(@".\th_it_IT.dat");
+            hunspell = new Hunspell(@".\elastic_hunspell_master_dicts_it_IT.aff", @".\elastic_hunspell_master_dicts_it_IT.dic");
         }
 
         //https://www.codeproject.com/Articles/43495/Spell-Check-Hyphenation-and-Thesaurus-for-NET-with
         public void GetSynonyms()
         {
-            MyThes thes = new MyThes(@"C:\Users\lenci\OneDrive - Istituto Istruzione Superiore Volterra Elia\Iride\SmartSearchAPI\SmartSearchAPI\th_it_IT.dat");
-            Hunspell hunspell = new Hunspell(@"C:\Users\lenci\OneDrive - Istituto Istruzione Superiore Volterra Elia\Iride\SmartSearchAPI\SmartSearchAPI\elastic_hunspell_master_dicts_it_IT.aff", @"C:\Users\lenci\OneDrive - Istituto Istruzione Superiore Volterra Elia\Iride\SmartSearchAPI\SmartSearchAPI\elastic_hunspell_master_dicts_it_IT.dic");
+            
+            ThesResult tr = thes.Lookup(Noun, hunspell);
 
-            ThesResult tr = thes.Lookup(Keyword, hunspell);
-
-            List<string> suggestions = hunspell.Suggest(Keyword);
+            List<string> suggestions = hunspell.Suggest(Noun);
             int n = 0;
 
             while(tr == null && n < suggestions.Count)

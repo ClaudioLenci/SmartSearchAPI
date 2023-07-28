@@ -8,13 +8,13 @@ namespace SmartSearchAPI
 {
     public class SmartSearchResult
     {
-        public List<SmartSearchKeyword> keywords { get; set; }
-        public List<SmartSearchDateRange> dateRanges { get; set; }
+        public List<SmartSearchKeyword> Keywords { get; set; }
+        public List<SmartSearchDateRange> DateRanges { get; set; }
 
         public SmartSearchResult() 
         {
-            keywords = new List<SmartSearchKeyword>();
-            dateRanges = new List<SmartSearchDateRange>();
+            Keywords = new List<SmartSearchKeyword>();
+            DateRanges = new List<SmartSearchDateRange>();
         }
     }
 }

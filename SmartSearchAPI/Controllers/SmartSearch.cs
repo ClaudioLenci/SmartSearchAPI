@@ -26,17 +26,16 @@ namespace SmartSearchAPI.Controllers
                 var last = tokens.Count - 1;
                 if (w.Item2 == "ADJ" || w.Item2 == "ADP" || w.Item2 == "ADV" || w.Item2 == "CCONJ" || w.Item2 == "NUM" || w.Item2 == "SCONJ" || w.Item2 == "SYM")
                 {
-                    tokens[last].data.Add(w.Item1);
+                    tokens[last].Data.Add(w.Item1);
                 }
                 else if (w.Item2 == "NOUN" || w.Item2 == "PROPN")
                 {
-                    tokens[last].data.Add(w.Item1);
-                    tokens[last].Keywords.Keyword = w.Item1;
+                    tokens[last].AddData(w.Item1, w.Item2);
                     tokens.Add(new SmartSearchToken());
                 }
                 else if (w.Item2 == "AUX" || w.Item2 == "INTJ" || w.Item2 == "PUNCT" || w.Item2 == "VERB")
                 {
-                    tokens[last].data.Clear();
+                    tokens[last].Data.Clear();
                 }
             }
 
@@ -45,7 +44,7 @@ namespace SmartSearchAPI.Controllers
             foreach (var token in tokens)
             {
                 token.Classify();
-                Console.WriteLine(token.text+"\t\t"+token.type);
+                Console.WriteLine(token.Text+"\t\t"+token.Type);
             }
 
             // analizza i token
@@ -56,7 +55,7 @@ namespace SmartSearchAPI.Controllers
             //    alla lista di keyword
             for (int i = 0; i < tokens.Count; i++)
             {
-                if (tokens[i].type == 0)
+                if (tokens[i].Type == 0)
                 {
                     while (i + 1 < tokens.Count && tokens[i].IsMergeable(tokens[i + 1]))
                     {
@@ -64,11 +63,11 @@ namespace SmartSearchAPI.Controllers
                         tokens.RemoveAt(i + 1);
                     }
                     tokens[i].GetTime();
-                    output.dateRanges.Add(tokens[i].range);
+                    output.DateRanges.Add(tokens[i].DateRange);
                 }
-                else if (tokens[i].type == 1)
+                else if (tokens[i].Type == 1)
                 {
-                    output.keywords.Add(tokens[i].Keywords);
+                    output.Keywords.Add(tokens[i].Keywords);
                 }
             }
 
