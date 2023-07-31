@@ -44,7 +44,6 @@ namespace SmartSearchAPI.Controllers
             foreach (var token in tokens)
             {
                 token.Classify();
-                Console.WriteLine(token.Text+"\t\t"+token.Type);
             }
 
             // analizza i token

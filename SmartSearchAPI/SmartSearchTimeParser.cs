@@ -13,38 +13,46 @@ namespace SmartSearchAPI
         readonly string[] months = { "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre" };
         readonly string[] daysofweek = { "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica" };
         readonly string[] expressions = { "l'altroieri", "ieri", "oggi", "domani", "dopodomani" };
-        readonly string[] preps = { "di", "a", "da", "in", "con", "su", "per", "tra", "fra", "dal", "dai", "dalle", "dalla", "dei", "della", "dello", "delle", "al", "alle", "ai", "del" };
+        readonly string[] preps = { "di", "del", "dello", "della", "dell’", "dei", "degli", "delle", "a", "al", "allo", "alla", "all’", "ai", "agli", "alle", "da", "dal", "dallo", "dalla", "dall’", "dai", "dagli", "dalle", "in", "nel", "nello", "nella", "nell’", "nei", "negli", "nelle", "su", "sul", "sullo", "sulla", "sull’", "sui", "sugli", "sulle" };
         readonly string[] conj = { "e", "o", "anche", "oltre" };
         readonly string[] nconj = { "non", "nemmeno", "tranne", "senza", "eccetto", "ne", "né" };
 
         public SmartSearchDateRange GetTime(string[] text, int index)
         {
-            if(index >= text.Length || index == -1)
+            if (index >= text.Length || index == -1)
             {
                 return new SmartSearchDateRange();
             }
             if (IsPrep(text[index]))
             {
-                if (text[index].ToLower() == "dal" || text[index].ToLower() == "tra")
+                if (text[index].ToLower() == "dal" || text[index].ToLower() == "tra" || text[index].ToLower() == "da" || text[index].ToLower() == "dai" || text[index].ToLower() == "dalla" || text[index].ToLower() == "dalle")
                 {
                     int n = Next(text, index);
                     while (n != -1 && !IsConj(text[n]) && !IsPrep(text[n]))
                     {
                         n = Next(text, n);
                     }
+                    if (n == -1)
+                    {
+                        return GetTime(text, index + 1);
+                    }
                     var r1 = GetTime(text, index + 1);
                     var r2 = GetTime(text, n);
                     return new SmartSearchDateRange(r1.datemin, r2.datemax);
                 }
-                return GetTime(text, Next(text, index));
+                if (text[index].ToLower() == "a" || text[index].ToLower() == "al" || text[index].ToLower() == "ai" || text[index].ToLower() == "alla" || text[index].ToLower() == "alle")
+                {
+                    return new SmartSearchDateRange(DateTime.MinValue, GetTime(text, index + 1).datemax);
+                }
+                return GetTime(text, Next(text, index + 1));
             }
             if (IsConj(text[index]))
             {
-                return GetTime(text, Next(text, index));
+                return GetTime(text, Next(text, index + 1));
             }
             if (IsNconj(text[index]))
             {
-                SmartSearchDateRange r = GetTime(text, Next(text, index));
+                SmartSearchDateRange r = GetTime(text, Next(text, index + 1));
                 r.include = false;
                 return r;
             }
@@ -55,7 +63,7 @@ namespace SmartSearchAPI
             if (IsYear(text[index]))
             {
                 int y = int.Parse(text[index]);
-                return new SmartSearchDateRange(new DateTime(y, 1, 1), new DateTime(y, 12, DateTime.DaysInMonth(y, 12)));
+                return new SmartSearchDateRange(new DateTime(y, 1, 1), new DateTime(y+1, 1, 1));
             }
             if (IsMonth(text[index]))
             {
@@ -66,7 +74,7 @@ namespace SmartSearchAPI
                     n = Next(text, n);
                 }
                 int y = n != -1 ? int.Parse(text[n]) : DateTime.Today.Year;
-                return new SmartSearchDateRange(new DateTime(y, m, 1), new DateTime(y, m, DateTime.DaysInMonth(y, m)).AddHours(24));
+                return new SmartSearchDateRange(new DateTime(y, m, 1), new DateTime(y, m+1, 1));
             }
             if (IsDay(text[index]))
             {
