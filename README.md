@@ -8,14 +8,14 @@ Lo scopo di questa API è quello di semplificare la ricerca di documenti, testi 
 La lingua che ho impostato nel progetto è l'italiano. I file che contengono le informazioni necessarie sono:
 <table border="solid">
     <tr>
-        <td>`./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.aff`</td>
+        <td><kbd>./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.aff</kbd></td>
         <td rowspan="2">File di dizionario per Hunspell</td>
     </tr>
     <tr>
-        <td>`./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.dic`</td>
+        <td><kbd>./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.dic</kbd></td>
     </tr>
     <tr>
-        <td>`./SmartSearchAPI/th_it_IT.dat`</td>
+        <td><kbd>./SmartSearchAPI/th_it_IT.dat</kbd></td>
         <td>File di lingua per Mythes</td>
     </tr>
 </table>

@@ -9,3 +9,8 @@
 {
     border-left: none;
 }
+
+td
+{
+    background: none;
+}
