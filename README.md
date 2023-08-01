@@ -1,4 +1,4 @@
-<link href="readme_style.css" rel="stylesheet">
+<link href="./readme_files/readme_style.css" rel="stylesheet">
 
 # SmartSearchAPI
 ## Scopo
@@ -27,10 +27,16 @@ La lingua che ho impostato nel progetto è l'italiano. I file che contengono le 
 Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammaticale, Catalyst, è impostata in italiano. Per selezionare l'italiano ho dovuto installare il pacchetto <kbd>Catalyst.Models.Italian</kbd> e adattare una parte di codice nella classe NLP_processor. Quindi per cambiare la lingua sarà necessario:
 <ol>
     <li>Installare il pacchetto <kbd>Catalyst.Models.-lingua-</kbd></li>
-    <li>Modificare il seguente pezzo di codice nella classe NLP_processor:<br>
-        ```Catalyst.Models.Italian.Register();<br> Storage.Current = new DiskStorage("catalyst-models");<br>var nlp = await Pipeline.ForAsync(Language.Italian);<br>var doc = new Document(input, Language.Italian);```
-    </li>
+    <li>Modificare il seguente pezzo di codice nella classe NLP_processor:</li>
+
 </ol>
+
+```
+    Catalyst.Models.Italian.Register();
+    Storage.Current = new DiskStorage("catalyst-models");
+    var nlp = await Pipeline.ForAsync(Language.Italian);
+    var doc = new Document(input, Language.Italian);
+```
 
 Infine l'intelligenza artificiale Classifier è allenata con un dataset in italiano, dunque sarà necessario ricreare il dataset e riallenarla per cambiare lingua.
 
