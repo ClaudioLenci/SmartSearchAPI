@@ -9,11 +9,13 @@ La lingua che ho impostato nel progetto è l'italiano. I file che contengono le 
 <table border="solid">
     <tr>
         <td><kbd>./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.aff</kbd></td>
-        <td rowspan="2">File di dizionario per Hunspell</td>
+        <td rowspan="3">File di dizionario per Hunspell</td>
     </tr>
+    <tr></tr>
     <tr>
         <td><kbd>./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.dic</kbd></td>
     </tr>
+    <tr></tr>
     <tr>
         <td><kbd>./SmartSearchAPI/th_it_IT.dat</kbd></td>
         <td>File di lingua per Mythes</td>
@@ -26,10 +28,12 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
 Il valore restituito dalla chiamata all'API è un json che rappresenta la classe SmartSearchResult. La classe (descritta qui sotto) è composta da una lista di SmartSearchKeyword e una lista di SmartSearchDateRange (anche queste classi sono descritte qui sotto).
 <table border="solid" width="340px">
     <tr><th colspan="2"><center>SmartSearchResult</center></th></tr>
+    <tr></tr>
     <tr>
         <td class="row_p">-</td>
         <td class="row_t">Keywords&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword [0 .. *]</td>
     </tr>
+    <tr></tr>
     <tr>
         <td class="row_p">-</td>
         <td class="row_t">DateRanges&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange [0 .. *]</td>
@@ -38,10 +42,12 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
 &nbsp;
 <table border="solid" width="340px">
     <tr><th colspan="2"><center>SmartSearchKeyword</center></th></tr>
+    <tr></tr>
     <tr>
         <td class="row_p">-</td>
         <td class="row_t">Noun&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
     </tr>
+    <tr></tr>
     <tr>
         <td class="row_p">-</td>
         <td class="row_t">Synonyms&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
@@ -50,14 +56,17 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
 &nbsp;
 <table border="solid" width="340px">
     <tr><th colspan="2"><center>SmartSearchDateRange</center></th></tr>
+    <tr></tr>
     <tr>
         <td class="row_p">-</td>
         <td class="row_t">DateMin&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
     </tr>
+    <tr></tr>
     <tr>
         <td class="row_p">-</td>
         <td class="row_t">DateMax&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
     </tr>
+    <tr></tr>
     <tr>
         <td class="row_p">-</td>
         <td class="row_t">Include&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
