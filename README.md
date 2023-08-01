@@ -9,17 +9,17 @@ All'interno del progetto sono stati installati diversi pacchetti, alcuni dei qua
 
 <table border="solid">
     <tr>
-        <td><h3 align="center">Catalyst</h3><img src="https://raw.githubusercontent.com/curiosity-ai/catalyst/master/Catalyst/catalyst-logo.png"></td>
+        <td><h3 align="center">Catalyst</h3><img src="./readme_files/Catalyst.png" width="128px"></td>
         <td>Libreria per l'elaborazione del linguaggio naturale. Permette di eseguire molto semplicemente un'analisi grammaticale del testo sottoposto</td>
         <td><a href="https://github.com/curiosity-ai/catalyst/">GitHub</a></td>
     </tr>
     <tr>
-        <td><h3 align="center">NHunspell</h3><img src="https://www.outsystems.com/Forge_BL/rest/ComponentThumbnail/GetURL_ComponentThumbnail?ProjectImageId=20624"></td>
+        <td><h3 align="center">NHunspell</h3><img src="./readme_files/Nhunspell.png" width="128px"></td>
         <td>Correttore ortografico open-source utilizzato all'interno di programmi come LibreOffice. Nel progetto viene utilizzato per trovare i sinonimi delle parole chiave ed, eventualmente, suggerire correzioni.</td>
         <td><a href="http://hunspell.github.io/">Sito</a><br><a href="https://github.com/hunspell/hunspell">GitHub</a></td>
     </tr>
     <tr>
-        <td><h3 align="center">ML.NET</h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Mldotnet.svg/1200px-Mldotnet.svg.png"></td>
+        <td><h3 align="center">ML.NET</h3><img src="./readme_files/Mldotnet.png" width="128px"></td>
         <td>Framework open-source di supporto per la creazione di modelli di machine learning di diverse tipologie. Nel progetto viene utilizzato per la gestione del modello Classifier.</td>
         <td><a href="https://dotnet.microsoft.com/en-us/apps/machinelearning-ai/ml-dotnet">Sito</a><br><a href="https://github.com/dotnet/machinelearningS">GitHub</a></td>
     </tr>
