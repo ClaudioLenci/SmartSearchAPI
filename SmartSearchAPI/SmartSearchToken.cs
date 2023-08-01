@@ -73,7 +73,6 @@ namespace SmartSearchAPI
             };
             var r = Classifier.Predict(modelInput);
             Type = (int)r.PredictedLabel;
-            GetTime();
         }
 
         public void GetTime()

@@ -8,27 +8,27 @@ namespace SmartSearchAPI
 {
     public class SmartSearchDateRange
     {
-        public DateTime datemin { get; set; }
-        public DateTime datemax { get; set; }
-        public bool include { get; set; }
+        public DateTime DateMin { get; set; }
+        public DateTime DateMax { get; set; }
+        public bool Include { get; set; }
 
-        public SmartSearchDateRange(DateTime datemin, DateTime datemax)
+        public SmartSearchDateRange(DateTime _DateMin, DateTime _DateMax)
         {
-            this.datemin = datemin;
-            this.datemax = datemax;
-            include = true;
+            this.DateMin = _DateMin;
+            this.DateMax = _DateMax;
+            Include = true;
         }
 
         public SmartSearchDateRange()
         {
-            this.datemin = DateTime.MinValue;
-            this.datemax = DateTime.MaxValue;
-            include = true;
+            this.DateMin = DateTime.MinValue;
+            this.DateMax = DateTime.MaxValue;
+            Include = true;
         }
 
         public override string ToString()
         {
-            return datemin.ToString() + " - " + datemax.ToString();
+            return DateMin.ToString() + " - " + DateMax.ToString();
         }
     }
 }

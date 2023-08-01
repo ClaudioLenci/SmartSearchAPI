@@ -38,27 +38,23 @@ namespace SmartSearchAPI
                     }
                     var r1 = GetTime(text, index + 1);
                     var r2 = GetTime(text, n);
-                    return new SmartSearchDateRange(r1.datemin, r2.datemax);
+                    return new SmartSearchDateRange(r1.DateMin, r2.DateMax);
                 }
                 if (text[index].ToLower() == "a" || text[index].ToLower() == "al" || text[index].ToLower() == "ai" || text[index].ToLower() == "alla" || text[index].ToLower() == "alle")
                 {
-                    return new SmartSearchDateRange(DateTime.MinValue, GetTime(text, index + 1).datemax);
+                    return new SmartSearchDateRange(DateTime.MinValue, GetTime(text, index + 1).DateMax);
                 }
-                return GetTime(text, Next(text, index + 1));
-            }
-            if (IsConj(text[index]))
-            {
                 return GetTime(text, Next(text, index + 1));
             }
             if (IsNconj(text[index]))
             {
                 SmartSearchDateRange r = GetTime(text, Next(text, index + 1));
-                r.include = false;
+                r.Include = false;
                 return r;
             }
             if (IsExpression(text[index]))
             {
-                return new SmartSearchDateRange(text2Expression(text[index]), text2Expression(text[index]).AddHours(24));
+                return new SmartSearchDateRange(Text2Expression(text[index]), Text2Expression(text[index]).AddHours(24));
             }
             if (IsYear(text[index]))
             {
@@ -152,7 +148,7 @@ namespace SmartSearchAPI
             }
         }
 
-        public DateTime text2Hour(string text)
+        public DateTime Text2Hour(string text)
         {
             string[] time = text.Split(':');
             return DateTime.Today.AddHours(int.Parse(time[0])).AddMinutes(int.Parse(time[1]));
@@ -176,7 +172,7 @@ namespace SmartSearchAPI
             return Regex.Match(text, "^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$").Success;
         }
 
-        public DateTime text2Expression(string text)
+        public DateTime Text2Expression(string text)
         {
             return DateTime.Today.AddDays(expressions.ToList().IndexOf(text.ToLower())-2);
         }
@@ -186,7 +182,7 @@ namespace SmartSearchAPI
             return expressions.Contains(text.ToLower());
         }
 
-        public int text2DayOfWeek(string text)
+        public int Text2DayOfWeek(string text)
         {
             return daysofweek.ToList().IndexOf(text.ToLower()) + 1;
         }
