@@ -28,7 +28,7 @@ Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammat
 <ol>
     <li>Installare il pacchetto <kbd>Catalyst.Models.-lingua-</kbd></li>
     <li>Modificare il seguente pezzo di codice nella classe NLP_processor:<br>
-        <code>Catalyst.Models.Italian.Register();<br>Storage.Current = new DiskStorage("catalyst-models");<br>var nlp = await Pipeline.ForAsync(Language.Italian);<br>var doc = new Document(input, Language.Italian);</code>
+        ```Catalyst.Models.Italian.Register();<br> Storage.Current = new DiskStorage("catalyst-models");<br>var nlp = await Pipeline.ForAsync(Language.Italian);<br>var doc = new Document(input, Language.Italian);```
     </li>
 </ol>
 
