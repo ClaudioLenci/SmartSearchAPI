@@ -1,16 +1,4 @@
-<style>
-    .row_p
-    {
-        width: 6px;
-        border-right: none;
-        font-size: 15px;
-    }
-    
-    .row_t
-    {
-        border-left: none;
-    }
-</style>
+<link href="readme_style.css" rel="stylesheet">
 
 # SmartSearchAPI
 ## Scopo
@@ -20,18 +8,19 @@ Lo scopo di questa API è quello di semplificare la ricerca di documenti, testi 
 La lingua che ho impostato nel progetto è l'italiano. I file che contengono le informazioni necessarie sono:
 <table border="solid">
     <tr>
-        <td><kbd>./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.aff</kbd></td>
+        <td>`./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.aff`</td>
         <td rowspan="2">File di dizionario per Hunspell</td>
     </tr>
     <tr>
-        <td><kbd>./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.dic</kbd></td>
+        <td>`./SmartSearchAPI/elastic_hunspell_master_dicts_it_IT.dic`</td>
     </tr>
     <tr>
-        <td><kbd>./SmartSearchAPI/th_it_IT.dat</kbd></td>
+        <td>`./SmartSearchAPI/th_it_IT.dat`</td>
         <td>File di lingua per Mythes</td>
     </tr>
 </table>
-Inoltre l'intelligenza artificiale Classifier è allenata con un dataset in italiano, dunque sarà necessario ricreare il dataset e riallenarla per cambiare lingua.
+Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammaticale, Catalyst, è impostata in italiano.
+Infine l'intelligenza artificiale Classifier è allenata con un dataset in italiano, dunque sarà necessario ricreare il dataset e riallenarla per cambiare lingua.
 
 ## Risultato
 Il valore restituito dalla chiamata all'API è un json che rappresenta la classe SmartSearchResult. La classe (descritta qui sotto) è composta da una lista di SmartSearchKeyword e una lista di SmartSearchDateRange (anche queste classi sono descritte qui sotto).
