@@ -89,8 +89,6 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
     </tr>
 </table>
 
-<br>
-
 ### SmartSearchKeyword
 
 <table border="solid" width="470px">
@@ -131,8 +129,6 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
     </tr>
 </table>
 
-<br>
-
 ### SmartSearchDateRange
 
 <table border="solid" width="470px">
@@ -162,8 +158,6 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
         <td class="row_t">SmartSearchDateRange (DateMin : DateTime, DateMax : DateTime)</td>
     </tr>
 </table>
-
-<br>
 
 ### SmartSearchToken
 
@@ -235,8 +229,6 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
     </tr>
 </table>
 
-<br>
-
 ### SmartSearchNlpProcessor
 
 <table border="solid" width="470px">
@@ -251,8 +243,6 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
         <td class="row_t">ProcessAsync (input : string) : {string, string}[0 .. *]</td>
     </tr>
 </table>
-
-<br>
 
 ### SmartSearchTimeParser
 
