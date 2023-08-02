@@ -9,8 +9,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Test\Test_generale2\NLP\NLP.csproj" />
     <ProjectReference Include="..\Hunspell\Hunspell.csproj" />
+    <ProjectReference Include="..\NLP\NLP.csproj" />
   </ItemGroup>
   <ItemGroup Label="Classifier">
     <None Include="Classifier.mlnet">

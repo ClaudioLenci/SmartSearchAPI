@@ -6,8 +6,12 @@ using Mosaik.Core;
 
 namespace NLP
 {
-    public class NLP_processor
+    public class SmartSearchNlpProcessor
     {
+        public SmartSearchNlpProcessor()
+        {
+        }
+
         public async Task<Tuple<string, string>[]> ProcessAsync(string input)
         {
             Catalyst.Models.Italian.Register();
