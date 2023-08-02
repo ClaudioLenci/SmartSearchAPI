@@ -1,8 +1,10 @@
 <link href="./readme_files/readme_style.css" rel="stylesheet">
 
 # SmartSearchAPI
+
 ## Scopo
 Lo scopo di questa API è quello di semplificare la ricerca di documenti, testi e altre informazioni all'interno di applicazioni web. Il servizio deve comprendere il linguaggio naturale umano ed estrapolarne le informazioni chiave.
+
 
 ## Pacchetti e tool
 All'interno del progetto sono stati installati diversi pacchetti, alcuni dei quali richiedono delle versioni diverse di .Net o .Net Framework, per cui sono stati inseriti tramite l'aggiunta di più progetti alla soluzione. Di seguito la lista dei pacchetti installati con una breve descrizione e con i link utili:
@@ -13,17 +15,20 @@ All'interno del progetto sono stati installati diversi pacchetti, alcuni dei qua
         <td>Libreria per l'elaborazione del linguaggio naturale. Permette di eseguire molto semplicemente un'analisi grammaticale del testo sottoposto</td>
         <td><a href="https://github.com/curiosity-ai/catalyst/">GitHub</a></td>
     </tr>
+    <tr></tr>
     <tr>
         <td><h3 align="center">NHunspell</h3><img src="./readme_files/Nhunspell.png" width="128px"></td>
         <td>Correttore ortografico open-source utilizzato all'interno di programmi come LibreOffice. Nel progetto viene utilizzato per trovare i sinonimi delle parole chiave ed, eventualmente, suggerire correzioni.</td>
         <td><a href="http://hunspell.github.io/">Sito</a><br><a href="https://github.com/hunspell/hunspell">GitHub</a></td>
     </tr>
+    <tr></tr>
     <tr>
         <td><h3 align="center">ML.NET</h3><img src="./readme_files/Mldotnet.png" width="128px"></td>
         <td>Framework open-source di supporto per la creazione di modelli di machine learning di diverse tipologie. Nel progetto viene utilizzato per la gestione del modello Classifier.</td>
         <td><a href="https://dotnet.microsoft.com/en-us/apps/machinelearning-ai/ml-dotnet">Sito</a><br><a href="https://github.com/dotnet/machinelearningS">GitHub</a></td>
     </tr>
 </table>
+
 
 ## Lingua
 La lingua che ho impostato nel progetto è l'italiano. I file che contengono le informazioni necessarie sono:
@@ -52,7 +57,7 @@ Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammat
 
 </ol>
 
-```
+```c#
     Catalyst.Models.<lingua>.Register();
     Storage.Current = new DiskStorage("catalyst-models");
     var nlp = await Pipeline.ForAsync(Language.<lingua>);
@@ -61,20 +66,20 @@ Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammat
 
 Infine l'intelligenza artificiale Classifier è allenata con un dataset in italiano, dunque sarà necessario ricreare il dataset e riallenarla per cambiare lingua.
 
-## Risultato
-Il valore restituito dalla chiamata all'API è un json che rappresenta la classe SmartSearchResult. La classe (descritta qui sotto) è composta da una lista di SmartSearchKeyword e una lista di SmartSearchDateRange (anche queste classi sono descritte qui sotto).
-
 
 ## Classi
+
+### SmartSearchResult
+
 <table border="solid" width="470px">
-    <tr><th colspan="2"><center>SmartSearchResult</center></th></tr>
+    <tr><th colspan="2"><center>SmartSearchResult </center></th></tr>
     <tr></tr>
     <tr>
         <td class="row_p">+</td>
         <td class="row_t">Keywords&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword [0 .. *]</td>
     </tr>
     <tr></tr>
-    <tr class="table_sep">
+    <tr>
         <td class="row_p">+</td>
         <td class="row_t">DateRanges&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange [0 .. *]</td>
     </tr>
@@ -83,7 +88,11 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">SmartSearchResult ()</td>
     </tr>
 </table>
+
 <br>
+
+### SmartSearchKeyword
+
 <table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchKeyword</center></th></tr>
     <tr></tr>
@@ -97,7 +106,7 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">isNoun&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
     </tr>
     <tr></tr>
-    <tr class="table_sep">
+    <tr>
         <td class="row_p">+</td>
         <td class="row_t">Synonyms&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
     </tr>
@@ -121,7 +130,11 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">GetSynonyms ()</td>
     </tr>
 </table>
+
 <br>
+
+### SmartSearchDateRange
+
 <table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchDateRange</center></th></tr>
     <tr></tr>
@@ -135,7 +148,7 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">DateMax&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
     </tr>
     <tr></tr>
-    <tr class="table_sep">
+    <tr>
         <td class="row_p">+</td>
         <td class="row_t">Include&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
     </tr>
@@ -149,7 +162,11 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">SmartSearchDateRange (DateMin : DateTime, DateMax : DateTime)</td>
     </tr>
 </table>
+
 <br>
+
+### SmartSearchToken
+
 <table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchToken</center></th></tr>
     <tr></tr>
@@ -178,7 +195,7 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">Keyword&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword</td>
     </tr>
     <tr></tr>
-    <tr class="table_sep">
+    <tr>
         <td class="row_p">+</td>
         <td class="row_t">DateRange&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange</td>
     </tr>
@@ -217,7 +234,11 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">GetTime ()</td>
     </tr>
 </table>
+
 <br>
+
+### SmartSearchNlpProcessor
+
 <table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchNlpProcessor</center></th></tr>
     <tr>
@@ -230,7 +251,11 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
         <td class="row_t">ProcessAsync (input : string) : {string, string}[0 .. *]</td>
     </tr>
 </table>
+
 <br>
+
+### SmartSearchTimeParser
+
 <table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchTimeParser</center></th></tr>
     <tr>
@@ -245,4 +270,12 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
     </tr>
 </table>
 
+
+
+## Risultato
+Il valore restituito dalla chiamata all'API è un json che rappresenta la classe [SmartSearchResult](#smartsearchresult). La classe è composta da una lista di [SmartSearchKeyword](#smartsearchkeyword) e una lista di [SmartSearchDateRange](#smartsearchdaterange).
+
+
+
 ## Considerazioni finali
+Il progetto può risultare utile per implementare facilmente un semplice sistema di ricerca intelligente. Naturalmente può essere di gran lunga migliorato e modificato per renderlo più efficace ed efficente. In particolare la funzione GetTime all'interno della classe SmartSearchTimeParser ha bisogno di un notevole miglioramento, dato che non utilizza l'analisi del linguaggio naturale bensì una implementazione intelligente di una funzione che va a controllare ogni singolo caso con una serie di condizioni.
