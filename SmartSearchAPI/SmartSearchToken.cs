@@ -79,7 +79,12 @@ namespace SmartSearchAPI
         {
             if(Type == 0)
             {
-                DateRange = parser.GetTime(Data.ToArray(), 0);
+                List<string> txt = new List<string>();
+                foreach(var d in Data)
+                {
+                    txt.Add(d.ToLower());
+                }
+                DateRange = parser.GetTime(txt.ToArray(), 0);
             }
         }
 

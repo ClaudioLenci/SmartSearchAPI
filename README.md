@@ -62,6 +62,8 @@ Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammat
     var doc = new Document(input, Language.<lingua>);
 ```
 
+Anche la classe SmartSearchTimeParser è stata definita basandosi sul lessico e sulla sintassi italiana. Dunque, per cambiare lingua, sarà necessario almeno tradurre le parole presenti all'interno dei vettori readonly della classe e, nel peggiore dei casi, riadattare le funzioni della classe alla nuova sintassi.
+
 Infine l'intelligenza artificiale Classifier è allenata con un dataset in italiano, dunque sarà necessario ricreare il dataset e riallenarla per cambiare lingua.
 
 
