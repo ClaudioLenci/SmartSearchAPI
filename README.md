@@ -1,5 +1,3 @@
-<link href="./readme_files/readme_style.css" rel="stylesheet">
-
 # SmartSearchAPI
 
 ## Scopo
