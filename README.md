@@ -45,10 +45,10 @@ La lingua che ho impostato nel progetto è l'italiano. I file che contengono le 
     </tr>
 </table>
 
-Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammaticale, Catalyst, è impostata in italiano. Per selezionare l'italiano è stato necessario installare il pacchetto <kbd>Catalyst.Models.Italian</kbd> e adattare una parte di codice nella classe NLP_processor. Quindi per cambiare la lingua sarà necessario:
+Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammaticale, Catalyst, è impostata in italiano. Per selezionare l'italiano è stato necessario installare il pacchetto <kbd>Catalyst.Models.Italian</kbd> e adattare una parte di codice nella classe SmartSearchNlpProcessor. Quindi per cambiare la lingua sarà necessario:
 <ol>
     <li>Installare il pacchetto <kbd>Catalyst.Models.-lingua-</kbd></li>
-    <li>Modificare il seguente pezzo di codice nella classe NLP_processor:</li>
+    <li>Modificare il seguente pezzo di codice nella classe SmartSearchNlpProcessor:</li>
 
 </ol>
 
@@ -63,50 +63,185 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
 
 ## Risultato
 Il valore restituito dalla chiamata all'API è un json che rappresenta la classe SmartSearchResult. La classe (descritta qui sotto) è composta da una lista di SmartSearchKeyword e una lista di SmartSearchDateRange (anche queste classi sono descritte qui sotto).
-<table border="solid" width="340px">
+
+
+## Classi
+<table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchResult</center></th></tr>
     <tr></tr>
     <tr>
-        <td class="row_p">-</td>
+        <td class="row_p">+</td>
         <td class="row_t">Keywords&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword [0 .. *]</td>
     </tr>
     <tr></tr>
-    <tr>
-        <td class="row_p">-</td>
+    <tr class="table_sep">
+        <td class="row_p">+</td>
         <td class="row_t">DateRanges&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange [0 .. *]</td>
     </tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchResult ()</td>
+    </tr>
 </table>
-&nbsp;
-<table border="solid" width="340px">
+<br>
+<table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchKeyword</center></th></tr>
     <tr></tr>
     <tr>
-        <td class="row_p">-</td>
+        <td class="row_p">+</td>
         <td class="row_t">Noun&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
     </tr>
     <tr></tr>
     <tr>
         <td class="row_p">-</td>
+        <td class="row_t">isNoun&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
+    </tr>
+    <tr></tr>
+    <tr class="table_sep">
+        <td class="row_p">+</td>
         <td class="row_t">Synonyms&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
     </tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchKeyword ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchKeyword (keyword: string)</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SetSynonyms (set : bool)</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">GetSynonyms ()</td>
+    </tr>
 </table>
-&nbsp;
-<table border="solid" width="340px">
+<br>
+<table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchDateRange</center></th></tr>
     <tr></tr>
     <tr>
-        <td class="row_p">-</td>
+        <td class="row_p">+</td>
         <td class="row_t">DateMin&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">-</td>
+        <td class="row_p">+</td>
         <td class="row_t">DateMax&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
     </tr>
     <tr></tr>
-    <tr>
-        <td class="row_p">-</td>
+    <tr class="table_sep">
+        <td class="row_p">+</td>
         <td class="row_t">Include&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
+    </tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchDateRange ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchDateRange (DateMin : DateTime, DateMax : DateTime)</td>
+    </tr>
+</table>
+<br>
+<table border="solid" width="470px">
+    <tr><th colspan="2"><center>SmartSearchToken</center></th></tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">Data&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">DataTypes&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">Text&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">Type&nbsp;&nbsp;:&nbsp;&nbsp;int</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">Keyword&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword</td>
+    </tr>
+    <tr></tr>
+    <tr class="table_sep">
+        <td class="row_p">+</td>
+        <td class="row_t">DateRange&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange</td>
+    </tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchToken ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchToken (Data : string [0 .. *], DataTypes : string [0 .. *])</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">AddData (Data : string, DataType : string)</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsMergeable (Token : SmartSearchToken) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">Merge (Token : SmartSearchToken)</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">Classify ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">GetTime ()</td>
+    </tr>
+</table>
+<br>
+<table border="solid" width="470px">
+    <tr><th colspan="2"><center>SmartSearchNlpProcessor</center></th></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchNlpProcessor ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">ProcessAsync (input : string) : {string, string}[0 .. *]</td>
+    </tr>
+</table>
+<br>
+<table border="solid" width="470px">
+    <tr><th colspan="2"><center>SmartSearchTimeParser</center></th></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">SmartSearchTimeParser ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">GetTime (text : string[0 .. *], index : int) : SmartSearchDateRange</td>
+        <!--Da continuare-->
     </tr>
 </table>
 

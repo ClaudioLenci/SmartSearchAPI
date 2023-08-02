@@ -11,7 +11,7 @@ namespace SmartSearchAPI.Controllers
         [HttpGet(Name = "Search")]
         public SmartSearchResult Search(string search)
         {
-            NLP_processor processor = new NLP_processor();
+            SmartSearchNlpProcessor processor = new SmartSearchNlpProcessor();
             SmartSearchResult output = new SmartSearchResult();
 
             // manda la frase alla AI Catalyst per farla dividere
@@ -66,7 +66,7 @@ namespace SmartSearchAPI.Controllers
                 }
                 else if (tokens[i].Type == 1)
                 {
-                    output.Keywords.Add(tokens[i].Keywords);
+                    output.Keywords.Add(tokens[i].Keyword);
                 }
             }
 

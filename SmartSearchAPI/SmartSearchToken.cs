@@ -24,8 +24,8 @@ namespace SmartSearchAPI
                 return "";
             }
         }
-        public SmartSearchKeyword Keywords { get; set; }
         public int Type { get; set; }
+        public SmartSearchKeyword Keyword { get; set; }
         public SmartSearchDateRange DateRange { get; set; }
         private readonly SmartSearchTimeParser parser;
 
@@ -33,7 +33,7 @@ namespace SmartSearchAPI
         {
             this.Data = _data;
             this.DataTypes = _dataTypes;
-            Keywords = new SmartSearchKeyword();
+            Keyword = new SmartSearchKeyword();
             Type = -1;
             DateRange = new SmartSearchDateRange();
             parser = new SmartSearchTimeParser();
@@ -43,7 +43,7 @@ namespace SmartSearchAPI
         {
             Data = new List<string>();
             DataTypes = new List<string>();
-            Keywords = new SmartSearchKeyword();
+            Keyword = new SmartSearchKeyword();
             Type = -1;
             DateRange = new SmartSearchDateRange();
             parser = new SmartSearchTimeParser();
@@ -55,13 +55,13 @@ namespace SmartSearchAPI
             this.DataTypes.Add(_dataType);
             if (_dataType == "NOUN")
             {
-                Keywords.SetSynonyms(true);
-                Keywords.Noun = _data;
+                Keyword.SetSynonyms(true);
+                Keyword.Noun = _data;
             }
             if (_dataType == "PROPN")
             {
-                Keywords.SetSynonyms(false);
-                Keywords.Noun = _data;
+                Keyword.SetSynonyms(false);
+                Keyword.Noun = _data;
             }
         }
 

@@ -17,6 +17,10 @@ namespace SmartSearchAPI
         readonly string[] conj = { "e", "o", "anche", "oltre" };
         readonly string[] nconj = { "non", "nemmeno", "tranne", "senza", "eccetto", "ne", "né" };
 
+        public SmartSearchTimeParser()
+        {
+        }
+
         public SmartSearchDateRange GetTime(string[] text, int index)
         {
             if (index >= text.Length || index == -1)
