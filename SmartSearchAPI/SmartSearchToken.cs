@@ -82,7 +82,7 @@
             }
         }
 
-        public bool IsMergeable(SmartSearchToken token)
+        public bool IsMergeableNext(SmartSearchToken token)
         {
             if (token.Type == 0 && this.Type == 0)
             {
@@ -103,10 +103,25 @@
             return false;
         }
 
+        public bool IsMergeablePrev(SmartSearchToken token)
+        {
+            if (token.Type == 2 && this.Type == 0)
+            {
+                var modelInput = new Classifier.ModelInput()
+                {
+                    Col0 = token.Text + " " + this.Text
+                };
+                var r = Classifier.Predict(modelInput);
+                return (int)r.PredictedLabel == 0;
+            }
+            return false;
+        }
+
         public void Merge(SmartSearchToken token)
         {
             this.Data.AddRange(token.Data);
             this.DataTypes.AddRange(token.DataTypes);
+            this.Type = 0;
         }
     }
 }

@@ -55,10 +55,16 @@ namespace SmartSearchAPI.Controllers
             {
                 if (tokens[i].Type == 0)
                 {
-                    while (i + 1 < tokens.Count && tokens[i].IsMergeable(tokens[i + 1]))
+                    while (i + 1 < tokens.Count && tokens[i].IsMergeableNext(tokens[i + 1]))
                     {
                         tokens[i].Merge(tokens[i + 1]);
                         tokens.RemoveAt(i + 1);
+                    }
+                    while(i - 1 >= 0 && tokens[i].IsMergeablePrev(tokens[i - 1]))
+                    {
+                        tokens[i - 1].Merge(tokens[i]);
+                        tokens.RemoveAt(i);
+                        i--;
                     }
                     tokens[i].GetTime();
                     output.DateRanges.Add(tokens[i].DateRange);

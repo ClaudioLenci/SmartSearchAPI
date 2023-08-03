@@ -1,7 +1,19 @@
 # SmartSearchAPI
 
+## Sommario
++ [Scopo](#scopo)
++ [Pacchetti e tool](#pacchetti-e-tool)
++ [Lingua](#lingua)
++ [Classi](#classi)
++ [Risultato](#risultato)
++ [Esempi](#esempi)
++ [Considerazioni finali](#considerazioni-finali)
+
+
 ## Scopo
-Lo scopo di questa API è quello di semplificare la ricerca di documenti, testi e altre informazioni all'interno di applicazioni web. Il servizio deve comprendere il linguaggio naturale umano ed estrapolarne le informazioni chiave.
+Lo scopo di questa API è quello di semplificare la ricerca di documenti, testi e altre informazioni all'interno di applicazioni web.  Il servizio deve essere in grado di estrapolare le informazioni di maggior importanza da un input in linguaggio naturale umano. Nello specifico, i due tipi di informazioni sulle quali si concentra sono:
++ parole chiave
++ range di date
 
 
 ## Pacchetti e tool
@@ -48,10 +60,10 @@ La lingua che ho impostato nel progetto è l'italiano. I file che contengono le 
     </tr>
 </table>
 
-Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammaticale, Catalyst, è impostata in italiano. Per selezionare l'italiano è stato necessario installare il pacchetto <kbd>Catalyst.Models.Italian</kbd> e adattare una parte di codice nella classe SmartSearchNlpProcessor. Quindi per cambiare la lingua sarà necessario:
+Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammaticale, Catalyst, è impostata in italiano. Per selezionare l'italiano è stato necessario installare il pacchetto <kbd>Catalyst.Models.Italian</kbd> e adattare una parte di codice nella classe [SmartSearchNlpProcessor](#smartsearchnlpprocessor). Quindi per cambiare la lingua sarà necessario:
 <ol>
     <li>Installare il pacchetto <kbd>Catalyst.Models.-lingua-</kbd></li>
-    <li>Modificare il seguente pezzo di codice nella classe SmartSearchNlpProcessor:</li>
+    <li>Modificare il seguente pezzo di codice nella classe [SmartSearchNlpProcessor](#smartsearchnlpprocessor):</li>
 
 </ol>
 
@@ -62,7 +74,7 @@ Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammat
     var doc = new Document(input, Language.<lingua>);
 ```
 
-Anche la classe SmartSearchTimeParser è stata definita basandosi sul lessico e sulla sintassi italiana. Dunque, per cambiare lingua, sarà necessario almeno tradurre le parole presenti all'interno dei vettori readonly della classe e, nel peggiore dei casi, riadattare le funzioni della classe alla nuova sintassi.
+Anche la classe [SmartSearchTimeParser](#smartsearchtimeparser) è stata definita basandosi sul lessico e sulla sintassi italiana. Dunque, per cambiare lingua, sarà necessario almeno tradurre le parole presenti all'interno dei vettori readonly della classe e, nel peggiore dei casi, riadattare le funzioni della classe alla nuova sintassi.
 
 Infine l'intelligenza artificiale Classifier è allenata con un dataset in italiano, dunque sarà necessario ricreare il dataset e riallenarla per cambiare lingua.
 
@@ -266,6 +278,134 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
 Il valore restituito dalla chiamata all'API è un json che rappresenta la classe [SmartSearchResult](#smartsearchresult). La classe è composta da una lista di [SmartSearchKeyword](#smartsearchkeyword) e una lista di [SmartSearchDateRange](#smartsearchdaterange).
 
 
+## Esempi
+Di seguito alcuni esempi di chiamate all'API:
++ input: "mostrami i documenti di gennaio"
+```json
+{
+  "keywords": [
+    {
+      "noun": "documenti",
+      "synonyms": [
+        "documento",
+        "attestato",
+        "carta",
+        "certificato",
+        "certificazione",
+        "documentazione",
+        "prova",
+        "testimonianza",
+        "attestazione",
+        "atto",
+        "dichiarazione"
+      ]
+    },
+    {
+      "noun": "",
+      "synonyms": []
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2023-01-01T00:00:00",
+      "dateMax": "2023-02-01T00:00:00",
+      "include": true
+    }
+  ]
+}
+```
+
++ input: "cerca le relazioni dell'anno scorso"
+```json
+{
+  "keywords": [
+    {
+      "noun": "relazioni",
+      "synonyms": [
+        "relazione",
+        "attinenza",
+        "connessione",
+        "legame",
+        "nesso",
+        "rapporto",
+        "vincolo"
+      ]
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2022-01-01T00:00:00",
+      "dateMax": "2023-01-01T00:00:00",
+      "include": true
+    }
+  ]
+}
+```
+
++ input: "dammi i bonifici dal 21 luglio 2022"
+```json
+{
+  "keywords": [
+    {
+      "noun": "bonifici",
+      "synonyms": [
+        "bonifico",
+        "abbuono",
+        "riduzione",
+        "ordine di versamento"
+      ]
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2022-07-21T00:00:00",
+      "dateMax": "9999-12-31T23:59:59.9999999",
+      "include": true
+    }
+  ]
+}
+```
+
++ input: "fammi vedere le transazioni di gennaio tranne quelle del 21 gennaio"
+```json
+{
+  "keywords": [
+    {
+      "noun": "transazioni",
+      "synonyms": [
+        "transazione",
+        "accomodamento",
+        "accordo",
+        "aggiustamento",
+        "compromesso",
+        "conciliazione",
+        "concordato",
+        "convenzione",
+        "esborso",
+        "pagamento",
+        "scambio"
+      ]
+    },
+    {
+      "noun": "",
+      "synonyms": []
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2023-01-01T00:00:00",
+      "dateMax": "2023-02-01T00:00:00",
+      "include": true
+    },
+    {
+      "dateMin": "2023-01-21T00:00:00",
+      "dateMax": "2023-01-22T00:00:00",
+      "include": false
+    }
+  ]
+}
+```
+
 
 ## Considerazioni finali
-Il progetto può risultare utile per implementare facilmente un semplice sistema di ricerca intelligente. Naturalmente può essere di gran lunga migliorato e modificato per renderlo più efficace ed efficente. In particolare la funzione GetTime all'interno della classe SmartSearchTimeParser ha bisogno di un notevole miglioramento, dato che non utilizza l'analisi del linguaggio naturale bensì una implementazione intelligente di una funzione che va a controllare ogni singolo caso con una serie di condizioni.
+Il progetto può risultare utile per implementare facilmente un semplice sistema di ricerca intelligente. Naturalmente può essere di gran lunga migliorato e modificato per renderlo più efficace ed efficente. In particolare la funzione GetTime all'interno della classe [SmartSearchTimeParser](#smartsearchtimeparser) ha bisogno di un notevole miglioramento, dato che non utilizza l'analisi del linguaggio naturale bensì una implementazione intelligente di una funzione che va a controllare ogni singolo caso con una serie di condizioni.

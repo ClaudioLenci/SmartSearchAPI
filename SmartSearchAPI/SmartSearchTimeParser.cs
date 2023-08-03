@@ -34,7 +34,7 @@ namespace SmartSearchAPI
                     }
                     if (n == -1)
                     {
-                        return GetTime(text, Next(text, index));
+                        return new SmartSearchDateRange(GetTime(text, Next(text, index)).DateMin, DateTime.MaxValue);
                     }
                     var r1 = GetTime(text, Next(text, index));
                     var r2 = GetTime(text, n);
@@ -98,7 +98,7 @@ namespace SmartSearchAPI
             return index < text.Length ? index : -1;
         }
 
-        public bool IsSomething(string text)
+        private bool IsSomething(string text)
         {
             return IsConj(text)
                 || IsDate(text)
@@ -142,7 +142,63 @@ namespace SmartSearchAPI
             }
         }
 
-        public SmartSearchDateRange Text2Hour(string[] text, int index)
+        public bool IsDate(string text)
+        {
+            try
+            {
+                DateTime.Parse(text);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool IsExpression2(string text)
+        {
+            return expressions2.Contains(text);
+        }
+
+        public bool IsName(string text)
+        {
+            return names.Contains(text);
+        }
+
+        public bool IsHour(string text)
+        {
+            return Regex.Match(text, "^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$").Success;
+        }
+
+        public bool IsExpression(string text)
+        {
+            return expressions.Contains(text);
+        }
+
+        public bool IsDayOfWeek(string text)
+        {
+            return daysofweek.Contains(text);
+        }
+
+        public bool IsMonth(string text)
+        {
+            return months.Contains(text);
+        }
+
+        public bool IsYear(string text)
+        {
+            try
+            {
+                int y = int.Parse(text);
+                return y > 1800 && y < 2200;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private SmartSearchDateRange Text2Hour(string[] text, int index)
         {
             string[] time = text[index].Split(':', '.');
             DateTime h = DateTime.Today.AddHours(int.Parse(time[0])).AddMinutes(int.Parse(time[1]));
@@ -174,32 +230,9 @@ namespace SmartSearchAPI
             }
         }
 
-        public bool IsDate(string text)
+        private SmartSearchDateRange Text2Expression2(string[] text, int index)
         {
-            try
-            {
-                DateTime.Parse(text);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool IsExpression2(string text)
-        {
-            return expressions2.Contains(text);
-        }
-
-        public bool IsName(string text)
-        {
-            return names.Contains(text);
-        }
-
-        public SmartSearchDateRange Text2Expression2(string[] text, int index)
-        {
-            int diff = expressions2.ToList().IndexOf(text[index]) - 2;
+            int diff = expressions2.ToList().IndexOf(text[index]) - 3;
             if (diff <= -2)
                 diff = -1;
             if (diff >= 2)
@@ -221,51 +254,31 @@ namespace SmartSearchAPI
                 case "settimana":
                     return new SmartSearchDateRange(StartOfWeek().AddDays(7 * diff), StartOfWeek().AddDays(7 * (diff + 1)));
                 case "mese":
-                    return new SmartSearchDateRange(new DateTime(y, m, d).AddMonths(diff), new DateTime(y, m, d).AddMonths(diff + 1));
+                    return new SmartSearchDateRange(new DateTime(y, m, 1).AddMonths(diff), new DateTime(y, m, 1).AddMonths(diff + 1));
                 case "anno":
-                    return new SmartSearchDateRange(new DateTime(y, m, d).AddYears(diff), new DateTime(y, m, d).AddYears(diff + 1));
+                    return new SmartSearchDateRange(new DateTime(y, 1, 1).AddYears(diff), new DateTime(y, 1, 1).AddYears(diff + 1));
                 default:
                     return new SmartSearchDateRange();
             }
         }
 
-        public bool IsHour(string text)
-        {
-            return Regex.Match(text, "^(0?[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$").Success;
-        }
-
-        public DateTime Text2Expression(string text)
+        private DateTime Text2Expression(string text)
         {
             return DateTime.Today.AddDays(expressions.ToList().IndexOf(text) - 2);
         }
 
-        public bool IsExpression(string text)
-        {
-            return expressions.Contains(text);
-        }
-
-        public int Text2DayOfWeek(string text)
+        private int Text2DayOfWeek(string text)
         {
             return daysofweek.ToList().IndexOf(text) + 1;
         }
 
-        public bool IsDayOfWeek(string text)
-        {
-            return daysofweek.Contains(text);
-        }
-
-        public static DateTime StartOfWeek()
+        private DateTime StartOfWeek()
         {
             int diff = (7 + (DateTime.Today.DayOfWeek - DayOfWeek.Monday)) % 7;
             return DateTime.Today.AddDays(-1 * diff);
         }
 
-        public bool IsMonth(string text)
-        {
-            return months.Contains(text);
-        }
-
-        public SmartSearchDateRange Text2Month(string[] text, int index)
+        private SmartSearchDateRange Text2Month(string[] text, int index)
         {
             int m = months.ToList().IndexOf(text[index]) + 1;
             int n = Next(text, index);
@@ -277,7 +290,7 @@ namespace SmartSearchAPI
             return new SmartSearchDateRange(new DateTime(y, m, 1), new DateTime(y, m + 1, 1));
         }
 
-        public SmartSearchDateRange Text2Day(string[] text, int index)
+        private SmartSearchDateRange Text2Day(string[] text, int index)
         {
             int d = int.Parse(text[index]);
             int n = Next(text, index);
@@ -299,19 +312,6 @@ namespace SmartSearchAPI
             catch
             {
                 return new SmartSearchDateRange(new DateTime(y, m, 1), new DateTime(y, m, 1).AddMonths(1));
-            }
-        }
-
-        public bool IsYear(string text)
-        {
-            try
-            {
-                int y = int.Parse(text);
-                return y > 1800 && y < 2200;
-            }
-            catch
-            {
-                return false;
             }
         }
     }
