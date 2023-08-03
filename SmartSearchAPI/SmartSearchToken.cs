@@ -72,7 +72,7 @@ namespace SmartSearchAPI
                 Col0 = Text
             };
             var r = Classifier.Predict(modelInput);
-            Type = (int)r.PredictedLabel;
+            this.Type = (int)r.PredictedLabel;
         }
 
         public void GetTime()
@@ -95,18 +95,24 @@ namespace SmartSearchAPI
                 int p = parser.Next(token.Data.ToArray(), -1);
                 if(p == -1)
                     p = token.Data.Count-1;
-                return parser.IsPrep(token.Data[p]) || parser.IsYear(token.Data[p]) || parser.IsConj(token.Data[p]);
+                return parser.IsPrep(token.Data[p]) || parser.IsYear(token.Data[p]) || parser.IsConj(token.Data[p]) || parser.IsExpression2(token.Data[p]);
+            }
+            if(token.Type == 2 && this.Type == 0)
+            {
+                var modelInput = new Classifier.ModelInput()
+                {
+                    Col0 = this.Text + " " + token.Text
+                };
+                var r = Classifier.Predict(modelInput);
+                return (int)r.PredictedLabel == 0;
             }
             return false;
         }
 
         public void Merge(SmartSearchToken token)
         {
-            if (token.Type == 0 && this.Type == 0)
-            {
-                this.Data.AddRange(token.Data);
-                GetTime();
-            }
+            this.Data.AddRange(token.Data);
+            this.DataTypes.AddRange(token.DataTypes);
         }
     }
 }

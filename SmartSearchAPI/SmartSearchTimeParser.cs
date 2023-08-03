@@ -16,7 +16,7 @@ namespace SmartSearchAPI
         readonly string[] months = { "gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre" };
         readonly string[] daysofweek = { "lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica" };
         readonly string[] expressions = { "l'altroieri", "ieri", "oggi", "domani", "dopodomani" };
-        readonly string[] expressions2 = { "scorso", "corrente", "prossimo" };
+        readonly string[] expressions2 = { "precedente", "scorsa", "scorso", "corrente", "prossimo", "prossima", "seguente" };
         readonly string[] names = { "giorno", "settimana", "mese", "anno" };
         readonly string[] preps = { "di", "del", "dello", "della", "dell’", "dei", "degli", "delle", "a", "al", "allo", "alla", "all’", "ai", "agli", "alle", "da", "dal", "dallo", "dalla", "dall’", "dai", "dagli", "dalle", "in", "nel", "nello", "nella", "nell’", "nei", "negli", "nelle", "su", "sul", "sullo", "sulla", "sull’", "sui", "sugli", "sulle" };
         readonly string[] conj = { "e", "o", "anche", "oltre" };
@@ -118,7 +118,9 @@ namespace SmartSearchAPI
                 || IsMonth(text)
                 || IsNconj(text)
                 || IsPrep(text)
-                || IsYear(text);
+                || IsYear(text)
+                || IsExpression2(text)
+                || IsName(text);
         }
 
         public bool IsNconj(string text)
@@ -206,7 +208,11 @@ namespace SmartSearchAPI
 
         public SmartSearchDateRange Text2Expression2(string[] text, int index)
         {
-            int diff = expressions2.ToList().IndexOf(text[index]) - 1;
+            int diff = expressions2.ToList().IndexOf(text[index]) - 2;
+            if (diff <= -2)
+                diff = -1;
+            if (diff >= 2)
+                diff = 1;
             int n = 0;
             while(n != -1 && !IsName(text[n]))
             {

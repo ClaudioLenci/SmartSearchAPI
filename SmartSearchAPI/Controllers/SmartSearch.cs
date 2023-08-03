@@ -26,7 +26,7 @@ namespace SmartSearchAPI.Controllers
                 var last = tokens.Count - 1;
                 if (w.Item2 == "ADJ" || w.Item2 == "ADP" || w.Item2 == "ADV" || w.Item2 == "CCONJ" || w.Item2 == "NUM" || w.Item2 == "SCONJ" || w.Item2 == "SYM")
                 {
-                    tokens[last].Data.Add(w.Item1);
+                    tokens[last].AddData(w.Item1, w.Item2);
                 }
                 else if (w.Item2 == "NOUN" || w.Item2 == "PROPN")
                 {
