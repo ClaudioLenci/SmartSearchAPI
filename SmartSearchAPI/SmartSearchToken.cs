@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SmartSearchAPI
+﻿namespace SmartSearchAPI
 {
     public class SmartSearchToken
     {
         public List<string> Data { get; set; }
         public List<string> DataTypes { get; set; }
-        public string Text 
+        public string Text
         {
             get
             {
@@ -77,10 +71,10 @@ namespace SmartSearchAPI
 
         public void GetTime()
         {
-            if(Type == 0)
+            if (Type == 0)
             {
                 List<string> txt = new List<string>();
-                foreach(var d in Data)
+                foreach (var d in Data)
                 {
                     txt.Add(d.ToLower());
                 }
@@ -90,14 +84,14 @@ namespace SmartSearchAPI
 
         public bool IsMergeable(SmartSearchToken token)
         {
-            if(token.Type == 0 && this.Type == 0)
+            if (token.Type == 0 && this.Type == 0)
             {
                 int p = parser.Next(token.Data.ToArray(), -1);
-                if(p == -1)
-                    p = token.Data.Count-1;
+                if (p == -1)
+                    p = token.Data.Count - 1;
                 return parser.IsPrep(token.Data[p]) || parser.IsYear(token.Data[p]) || parser.IsConj(token.Data[p]) || parser.IsExpression2(token.Data[p]);
             }
-            if(token.Type == 2 && this.Type == 0)
+            if (token.Type == 2 && this.Type == 0)
             {
                 var modelInput = new Classifier.ModelInput()
                 {

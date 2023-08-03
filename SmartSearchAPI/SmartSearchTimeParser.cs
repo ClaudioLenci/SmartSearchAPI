@@ -1,13 +1,4 @@
-﻿using Microsoft.Recognizers.Definitions.Arabic;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace SmartSearchAPI
 {
@@ -72,7 +63,7 @@ namespace SmartSearchAPI
             if (IsYear(text[index]))
             {
                 int y = int.Parse(text[index]);
-                return new SmartSearchDateRange(new DateTime(y, 1, 1), new DateTime(y+1, 1, 1));
+                return new SmartSearchDateRange(new DateTime(y, 1, 1), new DateTime(y + 1, 1, 1));
             }
             if (IsMonth(text[index]))
             {
@@ -146,7 +137,7 @@ namespace SmartSearchAPI
                 return d >= 0 && d <= 31;
             }
             catch
-            { 
+            {
                 return false;
             }
         }
@@ -214,7 +205,7 @@ namespace SmartSearchAPI
             if (diff >= 2)
                 diff = 1;
             int n = 0;
-            while(n != -1 && !IsName(text[n]))
+            while (n != -1 && !IsName(text[n]))
             {
                 n = Next(text, n);
             }
@@ -223,12 +214,12 @@ namespace SmartSearchAPI
             int y = DateTime.Now.Year;
             int m = DateTime.Now.Month;
             int d = DateTime.Now.Day;
-            switch(text[n])
+            switch (text[n])
             {
                 case "giorno":
                     return new SmartSearchDateRange(new DateTime(y, m, d).AddDays(diff), new DateTime(y, m, d).AddDays(diff + 1));
                 case "settimana":
-                    return new SmartSearchDateRange(StartOfWeek().AddDays(7*diff), StartOfWeek().AddDays(7*(diff+1)));
+                    return new SmartSearchDateRange(StartOfWeek().AddDays(7 * diff), StartOfWeek().AddDays(7 * (diff + 1)));
                 case "mese":
                     return new SmartSearchDateRange(new DateTime(y, m, d).AddMonths(diff), new DateTime(y, m, d).AddMonths(diff + 1));
                 case "anno":
@@ -245,7 +236,7 @@ namespace SmartSearchAPI
 
         public DateTime Text2Expression(string text)
         {
-            return DateTime.Today.AddDays(expressions.ToList().IndexOf(text)-2);
+            return DateTime.Today.AddDays(expressions.ToList().IndexOf(text) - 2);
         }
 
         public bool IsExpression(string text)

@@ -1,7 +1,5 @@
 ﻿using NHunspell;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace SmartSearchAPI
 {
@@ -18,7 +16,7 @@ namespace SmartSearchAPI
             set
             {
                 _keyword = value;
-                if(value != "" && isNoun)
+                if (value != "" && isNoun)
                     GetSynonyms();
             }
         }
@@ -52,13 +50,13 @@ namespace SmartSearchAPI
         //https://www.codeproject.com/Articles/43495/Spell-Check-Hyphenation-and-Thesaurus-for-NET-with
         public void GetSynonyms()
         {
-            
+
             ThesResult tr = thes.Lookup(Noun, hunspell);
 
             List<string> suggestions = hunspell.Suggest(Noun);
             int n = 0;
 
-            while(tr == null && n < suggestions.Count)
+            while (tr == null && n < suggestions.Count)
             {
                 tr = thes.Lookup(suggestions[n]);
                 n++;
