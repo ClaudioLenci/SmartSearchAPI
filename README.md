@@ -1,13 +1,15 @@
 # SmartSearchAPI
 
 ## Sommario
-+ [Scopo](#scopo)
-+ [Pacchetti e tool](#pacchetti-e-tool)
-+ [Lingua](#lingua)
-+ [Classi](#classi)
-+ [Risultato](#risultato)
-+ [Esempi](#esempi)
-+ [Considerazioni finali](#considerazioni-finali)
+- [Sommario](#sommario)
+- [Scopo](#scopo)
+- [Pacchetti e tool](#pacchetti-e-tool)
+- [Lingua](#lingua)
+- [Classi](#classi)
+- [AI Classifier](#ai-classifier)
+- [Risultato](#risultato)
+- [Esempi](#esempi)
+- [Considerazioni finali](#considerazioni-finali)
 
 
 ## Scopo
@@ -100,6 +102,7 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
         <td class="row_t">SmartSearchResult ()</td>
     </tr>
 </table>
+La classe SmartSearchResult è la classe che viene restituita come risultato in json. Essa contiene una lista di SmartSearchKeyword e una lista di SmartSearchDateRange, contenenti le informazioni chiave da utilizzare nell'ipotetica query.
 
 ### SmartSearchKeyword
 
@@ -140,6 +143,7 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
         <td class="row_t">GetSynonyms ()</td>
     </tr>
 </table>
+La classe SmartSearchKeyword serve per memorizzare in modo strutturato ogni parola chiave presente all'interno della stringa di ricerca e i rispettivi sinonimi e/o correzioni, che possono tornare utili considerando un eventuale errore dell'utente nel cercare un'informazione.
 
 ### SmartSearchDateRange
 
@@ -170,6 +174,7 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
         <td class="row_t">SmartSearchDateRange (DateMin : DateTime, DateMax : DateTime)</td>
     </tr>
 </table>
+La classe SmartSearchDateRange serve per memorizzare i range di date ai quali l'utente potrebbe eventualmente riferirsi nella ricerca. Essa ha come attributi la data minima, la data massima e un dato boolean che precisa se includere o escludere il range dalla ricerca. <b>Importante:</b> mentre la data minima rappresenta il limite "largo" (>=), la data massima rappresenta il limite "stretto" (<).
 
 ### SmartSearchToken
 
@@ -240,6 +245,9 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
         <td class="row_t">GetTime ()</td>
     </tr>
 </table>
+La classe SmartSearchToken viene utilizzata durante l'elaborazione dei dati. Essa contiene un pezzo di frase, il quale viene classificato dall'AI Classifier tramite il metodo Classify. Dopo essere stato classificato:
++ se è di tipo "keyword", viene estratto il nome che diventerà, appunto, la keyword
++ se è di tipo "tempo" si cerca di fare il merge con altri token adiacenti e infine si estrapola il range di date utilizzando il metodo GetTime
 
 ### SmartSearchNlpProcessor
 
@@ -255,6 +263,7 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
         <td class="row_t">ProcessAsync (input : string) : {string, string}[0 .. *]</td>
     </tr>
 </table>
+La classe SmartSearchNlpProcessor contiene il modello di Catalyst per l'analisi grammaticale della frase che viene fatta all'inizio del programma.
 
 ### SmartSearchTimeParser
 
@@ -268,10 +277,89 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
     <tr>
         <td class="row_p">+</td>
         <td class="row_t">GetTime (text : string[0 .. *], index : int) : SmartSearchDateRange</td>
-        <!--Da continuare-->
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">Next (text : string[0 .. *], index : int) : int</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsConj (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsNConj (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsPrep (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsDay (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsDate (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsExpression (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsExpression2 (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsName (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsHour (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsDayOfWeek (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsMonth (text : string) : bool</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td class="row_p">+</td>
+        <td class="row_t">IsYear (text : string) : bool</td>
     </tr>
 </table>
+La classe SmartSearchTimeParser è la classe utilizzata all'interno di ogni SmartSearchToken di tipo "tempo" per estrapolare il range di date tramite la funzione GetTime.
 
+
+## AI Classifier
+
+L'AI Classifier è stata allenata grazie a ML.NET. Il modello è, come suggerisce il nome, un classificatore: lo scenario scelto è infatti la Classificazione dei dati.
+
+<img src="./readme_files/classifier.jpg" width="200px">
+
+Le etichette utlizzate nella classificazione sono le seguenti:
+
++ 0 $\rightarrow$ tempo
++ 1 $\rightarrow$ keyword
++ 2 $\rightarrow$ altro
+
+Il modello è stato allenato su più di 6000 espressioni in italiano, create anche grazie all'ausilio di ChatGPT. Il modello viene utilizzato nel programma per classificare le parti della frase nelle tre classi sopra menzionate, che verranno successivamente elaborate.
 
 
 ## Risultato
@@ -280,7 +368,7 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
 
 ## Esempi
 Di seguito alcuni esempi di chiamate all'API:
-+ input: "mostrami i documenti di gennaio"
++ input: "<b>mostrami i documenti di gennaio</b>"
 ```json
 {
   "keywords": [
@@ -315,7 +403,7 @@ Di seguito alcuni esempi di chiamate all'API:
 }
 ```
 
-+ input: "cerca le relazioni dell'anno scorso"
++ input: "<b>cerca le relazioni dell'anno scorso</b>"
 ```json
 {
   "keywords": [
@@ -342,7 +430,7 @@ Di seguito alcuni esempi di chiamate all'API:
 }
 ```
 
-+ input: "dammi i bonifici dal 21 luglio 2022"
++ input: "<b>dammi i bonifici dal 21 luglio 2022</b>"
 ```json
 {
   "keywords": [
@@ -366,7 +454,7 @@ Di seguito alcuni esempi di chiamate all'API:
 }
 ```
 
-+ input: "fammi vedere le transazioni di gennaio tranne quelle del 21 gennaio"
++ input: "<b>fammi vedere le transazioni di gennaio tranne quelle del 21 gennaio</b>"
 ```json
 {
   "keywords": [
