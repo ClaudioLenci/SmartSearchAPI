@@ -23,9 +23,7 @@ namespace SmartSearchAPI
             {
                 _keyword = value;
                 if (value != "")
-                {
                     GetSynonyms();
-                }
             }
         }
         public List<string> Synonyms { get; }
@@ -50,28 +48,34 @@ namespace SmartSearchAPI
 
         public void GetSynonyms()
         {
-
-            ThesResult tr = thes.Lookup(Verb, hunspell);
-
-            List<string> suggestions = hunspell.Suggest(Verb);
-            int n = 0;
-
-            while (tr == null && n < suggestions.Count)
+            var stems = hunspell.Stem(Verb);
+            if(!stems.Contains(Verb))
+                stems.Add(Verb);
+            foreach (var v in stems)
             {
-                tr = thes.Lookup(suggestions[n]);
-                n++;
-            }
-            if (tr != null)
-            {
-                if (n > 0)
+
+                ThesResult tr = thes.Lookup(Verb, hunspell);
+
+                List<string> suggestions = hunspell.Suggest(v);
+                int n = 0;
+
+                while (tr == null && n < suggestions.Count)
                 {
-                    Synonyms.Add(suggestions[n - 1]);
+                    tr = thes.Lookup(suggestions[n]);
+                    n++;
                 }
-                foreach (var meaning in tr.Meanings)
+                if (tr != null)
                 {
-                    foreach (var synonym in meaning.Synonyms)
+                    if (n > 0)
                     {
-                        Synonyms.Add(synonym);
+                        Synonyms.Add(suggestions[n - 1]);
+                    }
+                    foreach (var meaning in tr.Meanings)
+                    {
+                        foreach (var synonym in meaning.Synonyms)
+                        {
+                            Synonyms.Add(synonym);
+                        }
                     }
                 }
             }
