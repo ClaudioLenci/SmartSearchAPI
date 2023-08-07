@@ -1,4 +1,6 @@
-﻿namespace SmartSearchAPI
+﻿using Catalyst;
+
+namespace SmartSearchAPI
 {
     public class SmartSearchToken
     {
@@ -19,6 +21,7 @@
             }
         }
         public int Type { get; set; }
+        public SmartSearchVerb Verb { get; set; }
         public SmartSearchKeyword Keyword { get; set; }
         public SmartSearchDateRange DateRange { get; set; }
         private readonly SmartSearchTimeParser parser;
@@ -27,6 +30,7 @@
         {
             this.Data = _data;
             this.DataTypes = _dataTypes;
+            Verb = new SmartSearchVerb();
             Keyword = new SmartSearchKeyword();
             Type = -1;
             DateRange = new SmartSearchDateRange();
@@ -37,6 +41,7 @@
         {
             Data = new List<string>();
             DataTypes = new List<string>();
+            Verb = new SmartSearchVerb();
             Keyword = new SmartSearchKeyword();
             Type = -1;
             DateRange = new SmartSearchDateRange();
@@ -56,6 +61,10 @@
             {
                 Keyword.SetSynonyms(false);
                 Keyword.Noun = _data;
+            }
+            if (_dataType == "VERB")
+            {
+                Verb.Verb = _data;
             }
         }
 
@@ -91,7 +100,7 @@
                     p = token.Data.Count - 1;
                 return parser.IsPrep(token.Data[p]) || parser.IsYear(token.Data[p]) || parser.IsConj(token.Data[p]) || parser.IsExpression2(token.Data[p]);
             }
-            if (token.Type == 2 && this.Type == 0)
+            if (token.Type != 0 && this.Type == 0)
             {
                 var modelInput = new Classifier.ModelInput()
                 {
@@ -105,7 +114,7 @@
 
         public bool IsMergeablePrev(SmartSearchToken token)
         {
-            if (token.Type == 2 && this.Type == 0)
+            if (token.Type != 0 && this.Type == 0)
             {
                 var modelInput = new Classifier.ModelInput()
                 {

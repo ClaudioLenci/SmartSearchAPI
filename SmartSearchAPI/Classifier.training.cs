@@ -13,7 +13,7 @@ namespace SmartSearchAPI
 {
     public partial class Classifier
     {
-        public const string RetrainFilePath =  @"C:\Users\lenci\OneDrive - Istituto Istruzione Superiore Volterra Elia\Iride\Training_8.txt";
+        public const string RetrainFilePath =  @"C:\Users\lenci\OneDrive - Istituto Istruzione Superiore Volterra Elia\Iride\Training_9.txt";
         public const char RetrainSeparatorChar = '	';
         public const bool RetrainHasHeader =  false;
 
@@ -91,7 +91,7 @@ namespace SmartSearchAPI
             var pipeline = mlContext.Transforms.Text.FeaturizeText(inputColumnName:@"col0",outputColumnName:@"col0")      
                                     .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"col0"}))      
                                     .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName:@"col1",inputColumnName:@"col1",addKeyValueAnnotationsAsText:false))      
-                                    .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(new LbfgsMaximumEntropyMulticlassTrainer.Options(){L1Regularization=0.03125F,L2Regularization=0.08091871F,LabelColumnName=@"col1",FeatureColumnName=@"Features"}))      
+                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator: mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(new LbfgsLogisticRegressionBinaryTrainer.Options(){L1Regularization=0.03125F,L2Regularization=0.03125F,LabelColumnName=@"col1",FeatureColumnName=@"Features"}), labelColumnName:@"col1"))      
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(outputColumnName:@"PredictedLabel",inputColumnName:@"PredictedLabel"));
 
             return pipeline;

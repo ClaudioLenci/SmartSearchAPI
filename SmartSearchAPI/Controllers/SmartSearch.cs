@@ -23,7 +23,7 @@ namespace SmartSearchAPI.Controllers
             foreach (var w in input)
             {
                 var last = tokens.Count - 1;
-                if (w.Item2 == "ADJ" || w.Item2 == "ADP" || w.Item2 == "ADV" || w.Item2 == "CCONJ" || w.Item2 == "NUM" || w.Item2 == "SCONJ" || w.Item2 == "SYM")
+                if (w.Item2 == "ADJ" || w.Item2 == "ADP" || w.Item2 == "ADV" || w.Item2 == "CCONJ" || w.Item2 == "NUM" || w.Item2 == "SCONJ" || w.Item2 == "SYM" || w.Item2 == "VERB")
                 {
                     tokens[last].AddData(w.Item1, w.Item2);
                 }
@@ -32,7 +32,7 @@ namespace SmartSearchAPI.Controllers
                     tokens[last].AddData(w.Item1, w.Item2);
                     tokens.Add(new SmartSearchToken());
                 }
-                else if (w.Item2 == "AUX" || w.Item2 == "INTJ" || w.Item2 == "PUNCT" || w.Item2 == "VERB")
+                else if (w.Item2 == "AUX" || w.Item2 == "INTJ" || w.Item2 == "PUNCT")
                 {
                     tokens[last].Data.Clear();
                 }
@@ -72,6 +72,7 @@ namespace SmartSearchAPI.Controllers
                 else if (tokens[i].Type == 1)
                 {
                     output.Keywords.Add(tokens[i].Keyword);
+                    output.Verbs.Add(tokens[i].Verb);
                 }
             }
 
