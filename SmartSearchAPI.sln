@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hunspell", "Hunspell\Hunspe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLP", "NLP\NLP.csproj", "{78F6DFFD-5CBF-426E-8D37-86D1FEDAD1FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lemmatize", "Lemmatize\Lemmatize.csproj", "{EE0D9B83-8A80-475F-9D58-3E7C2088BE61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{78F6DFFD-5CBF-426E-8D37-86D1FEDAD1FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78F6DFFD-5CBF-426E-8D37-86D1FEDAD1FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78F6DFFD-5CBF-426E-8D37-86D1FEDAD1FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE0D9B83-8A80-475F-9D58-3E7C2088BE61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE0D9B83-8A80-475F-9D58-3E7C2088BE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE0D9B83-8A80-475F-9D58-3E7C2088BE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE0D9B83-8A80-475F-9D58-3E7C2088BE61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

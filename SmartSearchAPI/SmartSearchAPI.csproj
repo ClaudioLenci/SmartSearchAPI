@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hunspell\Hunspell.csproj" />
+    <ProjectReference Include="..\Lemmatize\Lemmatize.csproj" />
     <ProjectReference Include="..\NLP\NLP.csproj" />
   </ItemGroup>
   <ItemGroup Label="Classifier">

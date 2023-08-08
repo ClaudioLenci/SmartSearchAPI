@@ -120,5 +120,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lemmatize\Lemmatize.csproj">
+      <Project>{ee0d9b83-8a80-475f-9d58-3e7c2088be61}</Project>
+      <Name>Lemmatize</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
