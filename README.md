@@ -24,7 +24,7 @@ All'interno del progetto sono stati installati diversi pacchetti, alcuni dei qua
 <table border="solid">
     <tr>
         <td><h3 align="center">Catalyst</h3><img src="./readme_files/Catalyst.png" width="128px"></td>
-        <td>Libreria per l'elaborazione del linguaggio naturale. Permette di eseguire molto semplicemente un'analisi grammaticale del testo sottoposto</td>
+        <td>Libreria per l'elaborazione del linguaggio naturale. Permette di eseguire molto semplicemente un'analisi grammaticale del testo sottoposto.</td>
         <td><a href="https://github.com/curiosity-ai/catalyst/">GitHub</a></td>
     </tr>
     <tr></tr>
@@ -38,6 +38,12 @@ All'interno del progetto sono stati installati diversi pacchetti, alcuni dei qua
         <td><h3 align="center">ML.NET</h3><img src="./readme_files/Mldotnet.png" width="128px"></td>
         <td>Framework open-source di supporto per la creazione di modelli di machine learning di diverse tipologie. Nel progetto viene utilizzato per la gestione del modello Classifier.</td>
         <td><a href="https://dotnet.microsoft.com/en-us/apps/machinelearning-ai/ml-dotnet">Sito</a><br><a href="https://github.com/dotnet/machinelearningS">GitHub</a></td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td><h3 align="center">LemmaSharp</h3><img src="./readme_files/LemmaSharp.png" width="128px"></td>
+        <td>Libreria utilizzata nel progetto per la lemmatizzazione delle parole, in particolare dei verbi, in previsione di una futura implementazione di una mappatura verbo-azione.</td>
+        <td><a href="http://lemmatise.ijs.si">Sito</a></td>
     </tr>
 </table>
 
@@ -69,7 +75,7 @@ Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammat
 
 </ol>
 
-```c#
+```cs
     Catalyst.Models.<lingua>.Register();
     Storage.Current = new DiskStorage("catalyst-models");
     var nlp = await Pipeline.ForAsync(Language.<lingua>);
@@ -77,6 +83,11 @@ Inoltre l'intelligenza artificiale che l'API utilizza per fare l'analisi grammat
 ```
 
 Anche la classe [SmartSearchTimeParser](#smartsearchtimeparser) è stata definita basandosi sul lessico e sulla sintassi italiana. Dunque, per cambiare lingua, sarà necessario almeno tradurre le parole presenti all'interno dei vettori readonly della classe e, nel peggiore dei casi, riadattare le funzioni della classe alla nuova sintassi.
+
+Nella classe Lemmatizer, inoltre, la lingua viene impostata nel costruttore e vi è una lista di dati nel file <kbd>Lemma_train.txt</kbd> per ampliare la funzionalità del lemmatizzatore anche ai verbi con i pronomi, come "dimmi", "dammi", ecc. Per cambiare la lingua quindi servirà riscrivere il file con nuovi ed eventuali ampliamenti nella lingua scelta e cambiare questa linea di codice:
+```cs
+l = new LemmatizerPrebuiltFull(LanguagePrebuilt.<lingua>);
+```
 
 Infine l'intelligenza artificiale Classifier è allenata con un dataset in italiano, dunque sarà necessario ricreare il dataset e riallenarla per cambiare lingua.
 
@@ -86,20 +97,20 @@ Infine l'intelligenza artificiale Classifier è allenata con un dataset in itali
 ### SmartSearchResult
 
 <table border="solid" width="470px">
-    <tr><th colspan="2"><center>SmartSearchResult </center></th></tr>
+    <tr><th colspan="2"><center>SmartSearchResult</center></th></tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Keywords&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword [0 .. *]</td>
+        <td>+</td>
+        <td>Keywords&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword [0 .. *]</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">DateRanges&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange [0 .. *]</td>
+        <td>+</td>
+        <td>DateRanges&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange [0 .. *]</td>
     </tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchResult ()</td>
+        <td>+</td>
+        <td>SmartSearchResult ()</td>
     </tr>
 </table>
 La classe SmartSearchResult è la classe che viene restituita come risultato in json. Essa contiene una lista di SmartSearchKeyword e una lista di SmartSearchDateRange, contenenti le informazioni chiave da utilizzare nell'ipotetica query.
@@ -110,40 +121,71 @@ La classe SmartSearchResult è la classe che viene restituita come risultato in 
     <tr><th colspan="2"><center>SmartSearchKeyword</center></th></tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Noun&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
+        <td>+</td>
+        <td>Noun&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">-</td>
-        <td class="row_t">isNoun&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
+        <td>-</td>
+        <td>isNoun&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Synonyms&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
+        <td>+</td>
+        <td>Synonyms&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
     </tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchKeyword ()</td>
-    </tr>
-    <tr></tr>
-    <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchKeyword (keyword: string)</td>
+        <td>+</td>
+        <td>SmartSearchKeyword ()</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SetSynonyms (set : bool)</td>
+        <td>+</td>
+        <td>SmartSearchKeyword (keyword: string)</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">GetSynonyms ()</td>
+        <td>+</td>
+        <td>SetSynonyms (set : bool)</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>+</td>
+        <td>GetSynonyms ()</td>
     </tr>
 </table>
 La classe SmartSearchKeyword serve per memorizzare in modo strutturato ogni parola chiave presente all'interno della stringa di ricerca e i rispettivi sinonimi e/o correzioni, che possono tornare utili considerando un eventuale errore dell'utente nel cercare un'informazione.
+
+### SmartSearchVerb
+
+<table border="solid" width="470px">
+    <tr><th colspan="2"><center>SmartSearchVerb</center></th></tr>
+    <tr></tr>
+    <tr>
+        <td>+</td>
+        <td>Verb&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td >+</td>
+        <td>Synonyms&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>SmartSearchVerb ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>+</td>
+        <td>SmartSearchVerb (verb: string)</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>+</td>
+        <td>GetSynonyms ()</td>
+    </tr>
+</table>
+La classe SmartSearchVerb è una classe molto simile a SmartSearchKeyword che serve per mettere in evidenza il verbo della ricerca che servirà in una futura funzionalità di mappatura verbo-azione.
 
 ### SmartSearchDateRange
 
@@ -151,27 +193,27 @@ La classe SmartSearchKeyword serve per memorizzare in modo strutturato ogni paro
     <tr><th colspan="2"><center>SmartSearchDateRange</center></th></tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">DateMin&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
+        <td>+</td>
+        <td>DateMin&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">DateMax&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
+        <td>+</td>
+        <td>DateMax&nbsp;&nbsp;:&nbsp;&nbsp;DateTime</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Include&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
+        <td>+</td>
+        <td>Include&nbsp;&nbsp;:&nbsp;&nbsp;bool</td>
     </tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchDateRange ()</td>
+        <td>+</td>
+        <td>SmartSearchDateRange ()</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchDateRange (DateMin : DateTime, DateMax : DateTime)</td>
+        <td>+</td>
+        <td>SmartSearchDateRange (DateMin : DateTime, DateMax : DateTime)</td>
     </tr>
 </table>
 La classe SmartSearchDateRange serve per memorizzare i range di date ai quali l'utente potrebbe eventualmente riferirsi nella ricerca. Essa ha come attributi la data minima, la data massima e un dato boolean che precisa se includere o escludere il range dalla ricerca. <b>Importante:</b> mentre la data minima rappresenta il limite "largo" (>=), la data massima rappresenta il limite "stretto" (<).
@@ -182,67 +224,67 @@ La classe SmartSearchDateRange serve per memorizzare i range di date ai quali l'
     <tr><th colspan="2"><center>SmartSearchToken</center></th></tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Data&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
+        <td>+</td>
+        <td>Data&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">DataTypes&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
+        <td>+</td>
+        <td>DataTypes&nbsp;&nbsp;:&nbsp;&nbsp;string [0 .. *]</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Text&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
+        <td>+</td>
+        <td>Text&nbsp;&nbsp;:&nbsp;&nbsp;string</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Type&nbsp;&nbsp;:&nbsp;&nbsp;int</td>
+        <td>+</td>
+        <td>Type&nbsp;&nbsp;:&nbsp;&nbsp;int</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Keyword&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword</td>
+        <td>+</td>
+        <td>Keyword&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchKeyword</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">DateRange&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange</td>
+        <td>+</td>
+        <td>DateRange&nbsp;&nbsp;:&nbsp;&nbsp;SmartSearchDateRange</td>
     </tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchToken ()</td>
-    </tr>
-    <tr></tr>
-    <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchToken (Data : string [0 .. *], DataTypes : string [0 .. *])</td>
+        <td>+</td>
+        <td>SmartSearchToken ()</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">AddData (Data : string, DataType : string)</td>
+        <td>+</td>
+        <td>SmartSearchToken (Data : string [0 .. *], DataTypes : string [0 .. *])</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsMergeable (Token : SmartSearchToken) : bool</td>
+        <td>+</td>
+        <td>AddData (Data : string, DataType : string)</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Merge (Token : SmartSearchToken)</td>
+        <td>+</td>
+        <td>IsMergeable (Token : SmartSearchToken) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Classify ()</td>
+        <td>+</td>
+        <td>Merge (Token : SmartSearchToken)</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">GetTime ()</td>
+        <td>+</td>
+        <td>Classify ()</td>
+    </tr>
+    <tr></tr>
+    <tr>
+        <td>+</td>
+        <td>GetTime ()</td>
     </tr>
 </table>
 La classe SmartSearchToken viene utilizzata durante l'elaborazione dei dati. Essa contiene un pezzo di frase, il quale viene classificato dall'AI Classifier tramite il metodo Classify. Dopo essere stato classificato:
@@ -254,13 +296,13 @@ La classe SmartSearchToken viene utilizzata durante l'elaborazione dei dati. Ess
 <table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchNlpProcessor</center></th></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchNlpProcessor ()</td>
+        <td>+</td>
+        <td>SmartSearchNlpProcessor ()</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">ProcessAsync (input : string) : {string, string}[0 .. *]</td>
+        <td>+</td>
+        <td>ProcessAsync (input : string) : {string, string}[0 .. *]</td>
     </tr>
 </table>
 La classe SmartSearchNlpProcessor contiene il modello di Catalyst per l'analisi grammaticale della frase che viene fatta all'inizio del programma.
@@ -270,78 +312,78 @@ La classe SmartSearchNlpProcessor contiene il modello di Catalyst per l'analisi 
 <table border="solid" width="470px">
     <tr><th colspan="2"><center>SmartSearchTimeParser</center></th></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">SmartSearchTimeParser ()</td>
+        <td>+</td>
+        <td>SmartSearchTimeParser ()</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">GetTime (text : string[0 .. *], index : int) : SmartSearchDateRange</td>
+        <td>+</td>
+        <td>GetTime (text : string[0 .. *], index : int) : SmartSearchDateRange</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">Next (text : string[0 .. *], index : int) : int</td>
+        <td>+</td>
+        <td>Next (text : string[0 .. *], index : int) : int</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsConj (text : string) : bool</td>
+        <td>+</td>
+        <td>IsConj (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsNConj (text : string) : bool</td>
+        <td>+</td>
+        <td>IsNConj (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsPrep (text : string) : bool</td>
+        <td>+</td>
+        <td>IsPrep (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsDay (text : string) : bool</td>
+        <td>+</td>
+        <td>IsDay (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsDate (text : string) : bool</td>
+        <td>+</td>
+        <td>IsDate (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsExpression (text : string) : bool</td>
+        <td>+</td>
+        <td>IsExpression (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsExpression2 (text : string) : bool</td>
+        <td>+</td>
+        <td>IsExpression2 (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsName (text : string) : bool</td>
+        <td>+</td>
+        <td>IsName (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsHour (text : string) : bool</td>
+        <td>+</td>
+        <td>IsHour (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsDayOfWeek (text : string) : bool</td>
+        <td>+</td>
+        <td>IsDayOfWeek (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsMonth (text : string) : bool</td>
+        <td>+</td>
+        <td>IsMonth (text : string) : bool</td>
     </tr>
     <tr></tr>
     <tr>
-        <td class="row_p">+</td>
-        <td class="row_t">IsYear (text : string) : bool</td>
+        <td>+</td>
+        <td>IsYear (text : string) : bool</td>
     </tr>
 </table>
 La classe SmartSearchTimeParser è la classe utilizzata all'interno di ogni SmartSearchToken di tipo "tempo" per estrapolare il range di date tramite la funzione GetTime.
@@ -361,9 +403,11 @@ Le etichette utlizzate nella classificazione sono le seguenti:
 
 Il modello è stato allenato su più di 6000 espressioni in italiano, create anche grazie all'ausilio di ChatGPT. Il modello viene utilizzato nel programma per classificare le parti della frase nelle tre classi sopra menzionate, che verranno successivamente elaborate.
 
+Il dataset utilizzato per l'allenamento del modello si trova nel file <kbd>Classifier_train.txt</kbd>.
+
 
 ## Risultato
-Il valore restituito dalla chiamata all'API è un json che rappresenta la classe [SmartSearchResult](#smartsearchresult). La classe è composta da una lista di [SmartSearchKeyword](#smartsearchkeyword) e una lista di [SmartSearchDateRange](#smartsearchdaterange).
+Il valore restituito dalla chiamata all'API è un json che rappresenta la classe [SmartSearchResult](#smartsearchresult). La classe è composta da una lista di [SmartSearchVerb](#smartsearchverb), una lista di [SmartSearchKeyword](#smartsearchkeyword) e una lista di [SmartSearchDateRange](#smartsearchdaterange).
 
 
 ## Esempi
