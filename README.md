@@ -41,7 +41,7 @@ All'interno del progetto sono stati installati diversi pacchetti, alcuni dei qua
     </tr>
     <tr></tr>
     <tr>
-        <td><h3 align="center">LemmaSharp</h3><img src="./readme_files/LemmaSharp.png" width="128px"></td>
+        <td><h3 align="center">LemmaSharp</h3><img src="./readme_files/Lemmasharp.png" width="128px"></td>
         <td>Libreria utilizzata nel progetto per la lemmatizzazione delle parole, in particolare dei verbi, in previsione di una futura implementazione di una mappatura verbo-azione.</td>
         <td><a href="http://lemmatise.ijs.si">Sito</a></td>
     </tr>
