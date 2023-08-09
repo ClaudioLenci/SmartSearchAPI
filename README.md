@@ -415,24 +415,241 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
 Di seguito alcuni esempi di chiamate all'API:
 + input: "<b>mostrami i documenti di gennaio</b>"
 ```json
-
+{
+  "verbs": [
+    {
+      "verb": "mostrare",
+      "synonyms": [
+        "dimostrare",
+        "esibire",
+        "esporre",
+        "indicare",
+        "palesare",
+        "presentare"
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "noun": "documenti",
+      "synonyms": [
+        "documento",
+        "attestato",
+        "carta",
+        "certificato",
+        "certificazione",
+        "documentazione",
+        "prova",
+        "testimonianza",
+        "attestazione",
+        "atto",
+        "dichiarazione"
+      ]
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2023-01-01T00:00:00",
+      "dateMax": "2023-02-01T00:00:00",
+      "include": true
+    }
+  ]
+}
 ```
 
 + input: "<b>cerca le relazioni dell'anno scorso</b>"
 ```json
-
+{
+  "verbs": [
+    {
+      "verb": "cercare",
+      "synonyms": [
+        "agognare",
+        "ambire",
+        "anelare",
+        "aspettarsi",
+        "aspirare",
+        "attendersi",
+        "bramare",
+        "perseguire",
+        "cacciare",
+        "frugare",
+        "indagare",
+        "inquisire",
+        "ricercare",
+        "rovistare"
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "noun": "relazioni",
+      "synonyms": [
+        "relazione",
+        "attinenza",
+        "connessione",
+        "legame",
+        "nesso",
+        "rapporto",
+        "vincolo"
+      ]
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2022-01-01T00:00:00",
+      "dateMax": "2023-01-01T00:00:00",
+      "include": true
+    }
+  ]
+}
 ```
 
 + input: "<b>dammi i bonifici dal 21 luglio 2022</b>"
 ```json
-
+{
+  "verbs": [
+    {
+      "verb": "dare",
+      "synonyms": [
+        "affidare",
+        "consegnare",
+        "porgere",
+        "prescrivere",
+        "somministrare",
+        "applicare",
+        "stendere",
+        "affibbiare",
+        "sferrare",
+        "vibrare",
+        "donare",
+        "offrire",
+        "regalare",
+        "corrispondere",
+        "pagare",
+        "versare",
+        "comunicare",
+        "diffondere",
+        "trasmettere",
+        "accordare",
+        "concedere",
+        "aggiudicare",
+        "assegnare",
+        "conferire",
+        "attribuire",
+        "riconoscere",
+        "impartire",
+        "infliggere",
+        "arrecare",
+        "cagionare",
+        "causare",
+        "provocare"
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "noun": "bonifici",
+      "synonyms": [
+        "bonifico",
+        "abbuono",
+        "riduzione",
+        "ordine di versamento"
+      ]
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2022-07-21T00:00:00",
+      "dateMax": "9999-12-31T23:59:59.9999999",
+      "include": true
+    }
+  ]
+}
 ```
 
 + input: "<b>fammi vedere le transazioni di gennaio tranne quelle del 21 gennaio</b>"
 ```json
-
+{
+  "verbs": [
+    {
+      "verb": "vedere",
+      "synonyms": [
+        "attività",
+        "lavoro",
+        "atteggiamento",
+        "contegno",
+        "maniera",
+        "agire",
+        "compiere",
+        "mettere in atto",
+        "operare",
+        "costruire",
+        "edificare",
+        "fabbricare",
+        "formare",
+        "comporre",
+        "creare",
+        "effettuare",
+        "elaborare",
+        "eseguire",
+        "realizzare",
+        "produrre",
+        "eleggere",
+        "nominare",
+        "promuovere",
+        "credere",
+        "giudicare",
+        "ritenere",
+        "adattarsi",
+        "confarsi",
+        "convenire",
+        "essere utile",
+        "assistere",
+        "contattare",
+        "controllare",
+        "esaminare",
+        "guardare",
+        "incontrare",
+        "rivedere",
+        "sognare",
+        "trovare"
+      ]
+    }
+  ],
+  "keywords": [
+    {
+      "noun": "transazioni",
+      "synonyms": [
+        "transazione",
+        "accomodamento",
+        "accordo",
+        "aggiustamento",
+        "compromesso",
+        "conciliazione",
+        "concordato",
+        "convenzione",
+        "esborso",
+        "pagamento",
+        "scambio"
+      ]
+    }
+  ],
+  "dateRanges": [
+    {
+      "dateMin": "2023-01-01T00:00:00",
+      "dateMax": "2023-02-01T00:00:00",
+      "include": true
+    },
+    {
+      "dateMin": "2023-01-21T00:00:00",
+      "dateMax": "2023-01-22T00:00:00",
+      "include": false
+    }
+  ]
+}
 ```
 
 
 ## Considerazioni finali
-Il progetto può risultare utile per implementare facilmente un semplice sistema di ricerca intelligente. Naturalmente può essere di gran lunga migliorato e modificato per renderlo più efficace ed efficente. In particolare la funzione GetTime all'interno della classe [SmartSearchTimeParser](#smartsearchtimeparser) ha bisogno di un notevole miglioramento, dato che non utilizza l'analisi del linguaggio naturale bensì una implementazione intelligente di una funzione che va a controllare ogni singolo caso con una serie di condizioni. Inoltre, il programma, pur riportando i verbi nell'output, non tiene conto di che azione essi rappresentino. Una futura implementazione di questa API dovrà considerare anche una funzionalità di mappatura verbo-azione, grazie alla quale l'utente potrà svolgere azioni, anche complesse, semplicemente digitando nel campo di ricerca. Infine, in questa versione del programma i nomi propri (delle aziende/clienti) vengono considerati come keyword insieme a nomi comuni (come "fatture", "relazioni", ecc). Sarà necessario trovare un metodo per distinguere
+Il progetto può risultare utile per implementare facilmente un semplice sistema di ricerca intelligente. Naturalmente può essere di gran lunga migliorato e modificato per renderlo più efficace ed efficente. In particolare la funzione GetTime all'interno della classe [SmartSearchTimeParser](#smartsearchtimeparser) ha bisogno di un notevole miglioramento, dato che non utilizza l'analisi del linguaggio naturale bensì una implementazione intelligente di una funzione che va a controllare ogni singolo caso con una serie di condizioni. Inoltre, il programma, pur riportando i verbi nell'output, non tiene conto di che azione essi rappresentino. Una futura implementazione di questa API dovrà considerare anche una funzionalità di mappatura verbo-azione, grazie alla quale l'utente potrà svolgere azioni, anche complesse, semplicemente digitando nel campo di ricerca. Infine, in questa versione del programma i nomi propri (delle aziende/clienti) vengono considerati come keyword insieme a nomi comuni (come "fatture", "relazioni", ecc). Sarà dunque necessario trovare un metodo per distinguere i nomi proprio dai nomi comuni.
