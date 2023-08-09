@@ -8,10 +8,9 @@ namespace NLP
 {
     public class SmartSearchNlpProcessor
     {
-        public SmartSearchNlpProcessor()
-        {
-        }
-
+        public SmartSearchNlpProcessor(){}
+        
+        //funzione per svolgere l'analisi grammaticale della frase passata in input
         public async Task<Tuple<string, string>[]> ProcessAsync(string input)
         {
             Catalyst.Models.Italian.Register();

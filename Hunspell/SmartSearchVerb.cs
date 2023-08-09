@@ -43,6 +43,10 @@ namespace SmartSearchAPI
             lemmatizer = new Lemmatizer();
         }
 
+        //metodo per ricavare i sinonimi del verbo
+        // + prima avviene la lemmatizzazione del verbo (viene coniugato all'infinito)
+        // + poi si cerca il verbo nel dizionario
+        // + poi per ogni significato del verbo si aggiungono tutti i sinonimi alla lista
         public void GetSynonyms()
         {
             _keyword = lemmatizer.GetLemma(Verb);
@@ -71,8 +75,6 @@ namespace SmartSearchAPI
                     }
                 }
             }
-            if(!Synonyms.Contains(Verb))
-                Synonyms.Insert(0, Verb);
         }
     }
 }

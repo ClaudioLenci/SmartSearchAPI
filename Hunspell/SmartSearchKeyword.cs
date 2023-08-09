@@ -33,11 +33,6 @@ namespace SmartSearchAPI
             hunspell = new Hunspell(@".\elastic_hunspell_master_dicts_it_IT.aff", @".\elastic_hunspell_master_dicts_it_IT.dic");
         }
 
-        public void SetSynonyms(bool _set)
-        {
-            isNoun = _set;
-        }
-
         public SmartSearchKeyword()
         {
             Synonyms = new List<string>();
@@ -47,10 +42,17 @@ namespace SmartSearchAPI
             hunspell = new Hunspell(@".\elastic_hunspell_master_dicts_it_IT.aff", @".\elastic_hunspell_master_dicts_it_IT.dic");
         }
 
-        //https://www.codeproject.com/Articles/43495/Spell-Check-Hyphenation-and-Thesaurus-for-NET-with
+        //funzione per settare la variabile bool che consente di creare i sinonimi
+        public void SetSynonyms(bool _set)
+        {
+            isNoun = _set;
+        }
+
+        //funzione per ricavare i sinonimi della keyword
+        // + prima si cerca la keyword nel dizionario
+        // + poi per ogni significato della keyword si aggiungono tutti i sinonimi alla lista
         public void GetSynonyms()
         {
-
             ThesResult tr = thes.Lookup(Noun, hunspell);
 
             List<string> suggestions = hunspell.Suggest(Noun);

@@ -72,7 +72,8 @@ namespace SmartSearchAPI.Controllers
                 else if (tokens[i].Type == 1)
                 {
                     output.Keywords.Add(tokens[i].Keyword);
-                    output.Verbs.Add(tokens[i].Verb);
+                    if (tokens[i].Verb.Verb != "")
+                        output.Verbs.Add(tokens[i].Verb);
                 }
             }
 

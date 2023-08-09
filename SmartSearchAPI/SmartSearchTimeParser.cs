@@ -13,10 +13,11 @@ namespace SmartSearchAPI
         readonly string[] conj = { "e", "o", "anche", "oltre" };
         readonly string[] nconj = { "non", "nemmeno", "tranne", "senza", "eccetto", "ne", "né" };
 
-        public SmartSearchTimeParser()
-        {
-        }
+        public SmartSearchTimeParser(){}
 
+        //funzione ricorsiva che va a controllare in ogni indice se la parola
+        //appartiene a uno degli array sopra e a seconda di dove la trova
+        //va a svolgere determinate operazioni
         public SmartSearchDateRange GetTime(string[] text, int index)
         {
             if (index >= text.Length || index == -1)
@@ -88,6 +89,8 @@ namespace SmartSearchAPI
             return GetTime(text, Next(text, index));
         }
 
+        //funzione per trovare la prima parola appartenente a uno degli
+        //array sopra partendo da un dato index
         public int Next(string[] text, int index)
         {
             do
@@ -98,6 +101,8 @@ namespace SmartSearchAPI
             return index < text.Length ? index : -1;
         }
 
+        //funzione per controllare se la parola passata come parametro appartiene
+        //a uno degli array sopra elencati
         private bool IsSomething(string text)
         {
             return IsConj(text)

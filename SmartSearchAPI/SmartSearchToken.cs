@@ -48,6 +48,7 @@ namespace SmartSearchAPI
             parser = new SmartSearchTimeParser();
         }
 
+        //metodo per aggiungere parole (e tag corrispondenti) ai dati del token
         public void AddData(string _data, string _dataType)
         {
             this.Data.Add(_data);
@@ -68,6 +69,7 @@ namespace SmartSearchAPI
             }
         }
 
+        //metodo per classificare il token tramite l'AI Classifier
         public void Classify()
         {
             var modelInput = new Classifier.ModelInput()
@@ -78,6 +80,7 @@ namespace SmartSearchAPI
             this.Type = (int)r.PredictedLabel;
         }
 
+        //metodo per ricavare il range temporale tramite SmartSearchTimeParser
         public void GetTime()
         {
             if (Type == 0)
@@ -91,6 +94,8 @@ namespace SmartSearchAPI
             }
         }
 
+        //metodo per controllare se il token successivo nell'array tokens
+        //può essere unito a quello corrente
         public bool IsMergeableNext(SmartSearchToken token)
         {
             if (token.Type == 0 && this.Type == 0)
@@ -112,6 +117,8 @@ namespace SmartSearchAPI
             return false;
         }
 
+        //metodo per controllare se il token precedente nell'array tokens
+        //può essere unito a quello corrente
         public bool IsMergeablePrev(SmartSearchToken token)
         {
             if (token.Type != 0 && this.Type == 0)
@@ -126,6 +133,8 @@ namespace SmartSearchAPI
             return false;
         }
 
+        //metodo per unire i dati di due token una volta controllati
+        //con i metodi IsMergeableNext e IsMergeablePrev
         public void Merge(SmartSearchToken token)
         {
             this.Data.AddRange(token.Data);

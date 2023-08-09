@@ -31,13 +31,13 @@ All'interno del progetto sono stati installati diversi pacchetti, alcuni dei qua
     <tr>
         <td><h3 align="center">NHunspell</h3><img src="./readme_files/Nhunspell.png" width="128px"></td>
         <td>Correttore ortografico open-source utilizzato all'interno di programmi come LibreOffice. Nel progetto viene utilizzato per trovare i sinonimi delle parole chiave ed, eventualmente, suggerire correzioni.</td>
-        <td><a href="http://hunspell.github.io/">Sito</a><br><a href="https://github.com/hunspell/hunspell">GitHub</a></td>
+        <td><a href="http://hunspell.github.io/">Sito</a><br><br><a href="https://github.com/hunspell/hunspell">GitHub</a><br><br><a href="https://www.codeproject.com/Articles/43495/Spell-Check-Hyphenation-and-Thesaurus-for-NET-with">Articolo con esempi</a></td>
     </tr>
     <tr></tr>
     <tr>
         <td><h3 align="center">ML.NET</h3><img src="./readme_files/Mldotnet.png" width="128px"></td>
         <td>Framework open-source di supporto per la creazione di modelli di machine learning di diverse tipologie. Nel progetto viene utilizzato per la gestione del modello Classifier.</td>
-        <td><a href="https://dotnet.microsoft.com/en-us/apps/machinelearning-ai/ml-dotnet">Sito</a><br><a href="https://github.com/dotnet/machinelearningS">GitHub</a></td>
+        <td><a href="https://dotnet.microsoft.com/en-us/apps/machinelearning-ai/ml-dotnet">Sito</a><br><br><a href="https://github.com/dotnet/machinelearningS">GitHub</a></td>
     </tr>
     <tr></tr>
     <tr>
@@ -403,7 +403,8 @@ Le etichette utlizzate nella classificazione sono le seguenti:
 
 Il modello è stato allenato su più di 6000 espressioni in italiano, create anche grazie all'ausilio di ChatGPT. Il modello viene utilizzato nel programma per classificare le parti della frase nelle tre classi sopra menzionate, che verranno successivamente elaborate.
 
-Il dataset utilizzato per l'allenamento del modello si trova nel file <kbd>Classifier_train.txt</kbd>.
+Il dataset utilizzato per l'allenamento del modello si trova nel file <kbd>Classifier_train.txt</kbd>. La struttura di ogni riga del file è la seguente:
+<center>parola/frase + tab + etichetta</center>
 
 
 ## Risultato
@@ -414,130 +415,24 @@ Il valore restituito dalla chiamata all'API è un json che rappresenta la classe
 Di seguito alcuni esempi di chiamate all'API:
 + input: "<b>mostrami i documenti di gennaio</b>"
 ```json
-{
-  "keywords": [
-    {
-      "noun": "documenti",
-      "synonyms": [
-        "documento",
-        "attestato",
-        "carta",
-        "certificato",
-        "certificazione",
-        "documentazione",
-        "prova",
-        "testimonianza",
-        "attestazione",
-        "atto",
-        "dichiarazione"
-      ]
-    },
-    {
-      "noun": "",
-      "synonyms": []
-    }
-  ],
-  "dateRanges": [
-    {
-      "dateMin": "2023-01-01T00:00:00",
-      "dateMax": "2023-02-01T00:00:00",
-      "include": true
-    }
-  ]
-}
+
 ```
 
 + input: "<b>cerca le relazioni dell'anno scorso</b>"
 ```json
-{
-  "keywords": [
-    {
-      "noun": "relazioni",
-      "synonyms": [
-        "relazione",
-        "attinenza",
-        "connessione",
-        "legame",
-        "nesso",
-        "rapporto",
-        "vincolo"
-      ]
-    }
-  ],
-  "dateRanges": [
-    {
-      "dateMin": "2022-01-01T00:00:00",
-      "dateMax": "2023-01-01T00:00:00",
-      "include": true
-    }
-  ]
-}
+
 ```
 
 + input: "<b>dammi i bonifici dal 21 luglio 2022</b>"
 ```json
-{
-  "keywords": [
-    {
-      "noun": "bonifici",
-      "synonyms": [
-        "bonifico",
-        "abbuono",
-        "riduzione",
-        "ordine di versamento"
-      ]
-    }
-  ],
-  "dateRanges": [
-    {
-      "dateMin": "2022-07-21T00:00:00",
-      "dateMax": "9999-12-31T23:59:59.9999999",
-      "include": true
-    }
-  ]
-}
+
 ```
 
 + input: "<b>fammi vedere le transazioni di gennaio tranne quelle del 21 gennaio</b>"
 ```json
-{
-  "keywords": [
-    {
-      "noun": "transazioni",
-      "synonyms": [
-        "transazione",
-        "accomodamento",
-        "accordo",
-        "aggiustamento",
-        "compromesso",
-        "conciliazione",
-        "concordato",
-        "convenzione",
-        "esborso",
-        "pagamento",
-        "scambio"
-      ]
-    },
-    {
-      "noun": "",
-      "synonyms": []
-    }
-  ],
-  "dateRanges": [
-    {
-      "dateMin": "2023-01-01T00:00:00",
-      "dateMax": "2023-02-01T00:00:00",
-      "include": true
-    },
-    {
-      "dateMin": "2023-01-21T00:00:00",
-      "dateMax": "2023-01-22T00:00:00",
-      "include": false
-    }
-  ]
-}
+
 ```
 
 
 ## Considerazioni finali
-Il progetto può risultare utile per implementare facilmente un semplice sistema di ricerca intelligente. Naturalmente può essere di gran lunga migliorato e modificato per renderlo più efficace ed efficente. In particolare la funzione GetTime all'interno della classe [SmartSearchTimeParser](#smartsearchtimeparser) ha bisogno di un notevole miglioramento, dato che non utilizza l'analisi del linguaggio naturale bensì una implementazione intelligente di una funzione che va a controllare ogni singolo caso con una serie di condizioni.
+Il progetto può risultare utile per implementare facilmente un semplice sistema di ricerca intelligente. Naturalmente può essere di gran lunga migliorato e modificato per renderlo più efficace ed efficente. In particolare la funzione GetTime all'interno della classe [SmartSearchTimeParser](#smartsearchtimeparser) ha bisogno di un notevole miglioramento, dato che non utilizza l'analisi del linguaggio naturale bensì una implementazione intelligente di una funzione che va a controllare ogni singolo caso con una serie di condizioni. Inoltre, il programma, pur riportando i verbi nell'output, non tiene conto di che azione essi rappresentino. Una futura implementazione di questa API dovrà considerare anche una funzionalità di mappatura verbo-azione, grazie alla quale l'utente potrà svolgere azioni, anche complesse, semplicemente digitando nel campo di ricerca. Infine, in questa versione del programma i nomi propri (delle aziende/clienti) vengono considerati come keyword insieme a nomi comuni (come "fatture", "relazioni", ecc). Sarà necessario trovare un metodo per distinguere
