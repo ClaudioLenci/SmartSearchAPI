@@ -1457,6 +1457,287 @@ dunque che che che che	2
 pertanto che che che che	2
 poiché che che che che	2
 perché che che che che	2
+Sull'argomento...	2
+Parlando di...	2
+Per quanto riguarda...	2
+A proposito di...	2
+In merito a...	2
+Riguardante...	2
+Relativo a...	2
+Pertinente a...	2
+Inerente a...	2
+Attinente a...	2
+Applicabile a...	2
+Coincidente con...	2
+Connesso a...	2
+Correlato a...	2
+Circa...	2
+Per quanto concerne...	2
+In relazione a...	2
+Sul fronte di...	2
+Sul tema di...	2
+Nella questione di...	2
+Pertinente per...	2
+Corrispondente a...	2
+Collegato a...	2
+Associato a...	2
+Relativo per...	2
+Coinvolgente per...	2
+In termini di...	2
+Trattando di...	2
+Relativamente a...	2
+Nel contesto di...	2
+Sul punto di...	2
+Parliamo di...	2
+Con riferimento a...	2
+Discutendo di...	2
+Per quanto attiene a...	2
+Intorno a...	2
+In riferimento a...	2
+A causa di...	2
+Tenendo conto di...	2
+Affrontando...	2
+Nel quadro di...	2
+Esaminando...	2
+Considerando...	2
+Alludendo a...	2
+Comprendendo...	2
+In relazione con...	2
+Tenendo presente...	2
+Come riguarda...	2
+Affrontando la questione di...	2
+Occupandosi di...	2
+Sulla scia di...	2
+Entrando nel merito di...	2
+Scendendo nei dettagli di...	2
+Rivolgendosi a...	2
+Riguardo all'aspetto di...	2
+Intorno all'idea di...	2
+In riferimento a ciò che...	2
+Affrontando l'argomento di...	2
+Sul versante di...	2
+Mettendo in luce...	2
+Avendo a che fare con...	2
+Incluso in...	2
+Sotto il profilo di...	2
+Concentrandosi su...	2
+Trattato nell'ottica di...	2
+Approfondendo...	2
+Toccando il punto di...	2
+Trattato rispetto a...	2
+Entrando nel dettaglio di...	2
+Sotto l'aspetto di...	2
+Riguardo all'opinione su...	2
+Discutendo riguardo a...	2
+Intorno all'interesse di...	2
+Nel discutere di...	2
+Menzionando...	2
+Trattando l'oggetto di...	2
+Parlando riguardo a...	2
+In linea con...	2
+Applicato a...	2
+Proprio per...	2
+Pertinente nell'ottica di...	2
+Relativo all'ambito di...	2
+Inerente all'oggetto di...	2
+Sull'argomento di...	2
+Per quel che riguarda...	2
+Trattando dell'argomento di...	2
+Nella discussione di...	2
+In virtù di...	2
+Trattando la tematica di...	2
+Affrontando il punto di...	2
+Incorporando...	2
+Analizzando...	2
+In merito all'aspetto di...	2
+Affrontando la sfida di...	2
+Trattando in profondità...	2
+Occupandosi dell'aspetto di...	2
+Nel trattare l'oggetto di...	2
+Includendo...	2
+Nel parlare di...	2
+In considerazione del fatto che...	2
+A seguito di...	2
+In quanto a...	2
+Parlando specificamente di...	2
+In quanto riguarda...	2
+Nell'affrontare la problematica di...	2
+Nella valutazione di...	2
+Trattando nel dettaglio...	2
+Nel contemplare...	2
+In riferimento alla situazione di...	2
+Riguardo all'argomento di...	2
+Affrontando il dibattito su...	2
+Nell'esaminare...	2
+Nella discussione relativa a...	2
+In corrispondenza del problema di...	2
+In merito alla questione di...	2
+Parlando in termini di...	2
+Nel discutere riguardo a...	2
+Relativo all'argomento di...	2
+Nell'ambito di...	2
+Con riguardo a...	2
+Parlando rispetto a...	2
+In merito all'oggetto di...	2
+Considerando la questione di...	2
+Riguardante la discussione di...	2
+Inerente alla problematica di...	2
+Discutendo l'aspetto di...	2
+In relazione all'argomento di...	2
+Intorno alla questione di...	2
+Esaminando il contesto di...	2
+In riferimento all'aspetto di...	2
+In quanto riguarda l'oggetto di...	2
+Relativo al dibattito su...	2
+Parlando riguardo all'aspetto di...	2
+Concentrandosi sull'oggetto di...	2
+Trattando in dettaglio l'argomento di...	2
+Nel contesto della discussione di...	2
+Riguardante la questione di...	2
+Affrontando il punto chiave di...	2
+Intorno all'oggetto di...	2
+Nella considerazione dell'aspetto di...	2
+Affrontando la problematica di...	2
+In virtù del contesto di...	2
+Sotto il profilo dell'argomento di...	2
+Trattando il tema di...	2
+In relazione all'oggetto di...	2
+Alludendo al dibattito su...	2
+Nella discussione inerente a...	2
+Intorno all'argomento di...	2
+In riferimento al punto di...	2
+Affrontando la questione cruciale di...	2
+Nel discutere riguardo all'oggetto di...	2
+Trattando nel dettaglio la problematica di...	2
+Nell'analizzare...	2
+Nel contemplare l'argomento di...	2
+Con riferimento al dibattito su...	2
+Nel parlare in relazione a...	2
+Considerando l'aspetto di...	2
+In quanto riguarda la questione di...	2
+Nel contesto dell'argomento di...	2
+Affrontando la questione specifica di...	2
+Toccando il punto chiave riguardante...	2
+Nel considerare l'oggetto di...	2
+Parlando in relazione all'argomento di...	2
+Nell'esaminare la problematica di...	2
+Nel discutere in merito all'argomento di...	2
+Trattando l'aspetto di...	2
+Intorno alla tematica di...	2
+Nel valutare la questione di...	2
+In riferimento al dibattito riguardo a...	2
+Affrontando l'aspetto cruciale di...	2
+Con riguardo al contesto di...	2
+Considerando l'oggetto di...	2
+Nella discussione in merito a...	2
+Discutendo la questione di...	2
+Riguardo alla situazione di...	2
+Toccando l'oggetto di...	2
+Trattando nel dettaglio l'oggetto di...	2
+Parlando a proposito dell'argomento di...	2
+Nel considerare la questione di...	2
+In riferimento alla problematica di...	2
+Affrontando la discussione riguardante...	2
+Nel discutere sull'oggetto di...	2
+Trattando l'argomento chiave di...	2
+Nell'esaminare l'aspetto di...	2
+Nel contesto della questione di...	2
+Affrontando la tematica di...	2
+Parlando riguardo alla questione di...	2
+Nel considerare l'aspetto di...	2
+In relazione al contesto di...	2
+Discutendo la problematica di...	2
+Riguardo all'oggetto di...	2
+Toccando l'argomento di...	2
+Trattando in profondità la questione di...	2
+Nell'analisi dell'oggetto di...	2
+Affrontando l'argomento cruciale di...	2
+Parlando dell'oggetto di...	2
+Nel discutere in relazione all'argomento di...	2
+In riferimento alla discussione di...	2
+Considerando la tematica di...	2
+Con riguardo all'aspetto di...	2
+Nella trattazione dell'oggetto di...	2
+Discutendo il punto chiave riguardo a...	2
+Riguardo al dibattito di...	2
+Toccando la questione di...	2
+Parlando dell'aspetto di...	2
+Nella considerazione dell'argomento di...	2
+Connesso al dibattito su...	2
+In riferimento al tema di...	2
+Riguardante l'aspetto di...	2
+Nel discutere riguardo all'aspetto di...	2
+In merito all'argomento di...	2
+Relativo al punto di...	2
+Inerente all'argomento di...	2
+In riferimento all'idea di...	2
+Toccando l'aspetto di...	2
+Parlando del dibattito su...	2
+Affrontando il tema di...	2
+Riguardante il dibattito su...	2
+Con riferimento all'aspetto di...	2
+Nel considerare l'argomento di...	2
+Affrontando l'oggetto di...	2
+Nell'esaminare l'argomento di...	2
+Parlando rispetto all'argomento di...	2
+Con riguardo alla discussione di...	2
+Nel discutere in merito all'aspetto di...	2
+Riguardante l'oggetto di...	2
+Nell'affrontare la tematica di...	2
+In riferimento al dibattito di...	2
+Affrontando la questione di fondo di...	2
+Trattando in profondità l'argomento di...	2
+Connesso all'oggetto di...	2
+Inerente al dibattito di...	2
+Nel discutere sull'argomento di...	2
+Intorno all'aspetto di...	2
+Riguardante il punto di...	2
+Toccando il dibattito su...	2
+Parlando in merito all'argomento di...	2
+Trattando l'aspetto cruciale di...	2
+Affrontando l'argomento chiave di...	2
+Nell'analizzare l'aspetto di...	2
+Parlando del punto di...	2
+Nel discutere in relazione all'aspetto di...	2
+Discutendo il tema di...	2
+Riguardo al dibattito riguardante...	2
+Considerando l'argomento di...	2
+Nel trattare l'aspetto di...	2
+Affrontando l'oggetto centrale di...	2
+Parlando rispetto all'oggetto di...	2
+Trattando l'oggetto chiave di...	2
+In relazione al dibattito su...	2
+Nell'analisi dell'argomento di...	2
+Con riguardo al punto di...	2
+Discutendo dell'aspetto di...	2
+Riguardante il tema di...	2
+Affrontando l'aspetto principale di...	2
+Parlando riguardo all'argomento di...	2
+Trattando nel dettaglio l'aspetto di...	2
+Connesso alla discussione di...	2
+Intorno al dibattito su...	2
+Riguardante il punto chiave di...	2
+Discutendo sull'oggetto di...	2
+Nella valutazione dell'argomento di...	2
+Parlando in relazione all'oggetto di...	2
+Nel trattare l'argomento di...	2
+Affrontando l'oggetto fondamentale di...	2
+Con riguardo alla questione di...	2
+In merito al dibattito riguardante...	2
+Discutendo dell'oggetto di...	2
+Toccando il tema di...	2
+Nell'esaminare l'oggetto di...	2
+Parlando del punto chiave di...	2
+Concentrandosi sull'argomento di...	2
+Riguardante il dibattito relativo a...	2
+Nel discutere dell'aspetto di...	2
+Nella trattazione dell'argomento di...	2
+Parlando riguardante l'aspetto di...	2
+Nel contemplare l'oggetto di...	2
+Trattando in dettaglio l'aspetto di...	2
+Connesso alla tematica di...	2
+Intorno al dibattito riguardo a...	2
+Riguardante il punto focale di...	2
 Oggi	0
 Domani	0
 Dopodomani	0
