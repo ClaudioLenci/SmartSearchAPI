@@ -401,7 +401,7 @@ Le etichette utlizzate nella classificazione sono le seguenti:
 + 1 $\rightarrow$ keyword
 + 2 $\rightarrow$ altro
 
-Il modello è stato allenato su più di 6000 espressioni in italiano, create anche grazie all'ausilio di ChatGPT. Il modello viene utilizzato nel programma per classificare le parti della frase nelle tre classi sopra menzionate, che verranno successivamente elaborate.
+Il modello è stato allenato su più di 7000 espressioni in italiano, create anche grazie all'ausilio di ChatGPT. Il modello viene utilizzato nel programma per classificare le parti della frase nelle tre classi sopra menzionate, che verranno successivamente elaborate.
 
 Il dataset utilizzato per l'allenamento del modello si trova nel file <kbd>Classifier_train.txt</kbd>. La struttura di ogni riga del file è la seguente:
 <center>parola/frase + tab + etichetta</center>
